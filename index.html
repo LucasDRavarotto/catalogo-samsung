@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
-  <meta charset="UTF-8">
-  <title>Catálogo Samsung - De Re Tech</title>
-  <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #1a1a1a; color: #eee; padding: 30px; }
-    h2, h3.section-title { color: #00ffc3; border-bottom: 1px solid #444; padding-bottom: 5px; }
-    table { width: 100%; border-collapse: collapse; margin-bottom: 30px; background: #111; }
-    th, td { padding: 12px 16px; border-bottom: 1px solid #333; }
-    th { background: #222; color: #00ffc3; }
+<meta charset="UTF-8">
+    <title>Catálogo Samsung - De Re Tech</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #1a1a1a; color: #eee; padding: 30px; }
+        h2, h3.section-title { color: #00ffc3; border-bottom: 1px solid #444; padding-bottom: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; background: #111; }
+        th, td { padding: 12px 16px; border-bottom: 1px solid #333; }
+        th { background: #222; color: #00ffc3; }
   </style>
 </head>
 <body>
@@ -47,10 +47,10 @@
       a54: 330, s23u: 580
     };
 
-    fetch("https://criptoya.com/api/lemoncash/usdt/ars/0.1")
+    fetch("https://criptoya.com/api/lemoncash/usdt/ars")
       .then(res => res.json())
       .then(data => {
-        const cotizacion = data.total;
+        const cotizacion = data.totalAsk;
         for (const [id, usdt] of Object.entries(precios)) {
           const precioFinal = (usdt * cotizacion).toLocaleString("es-AR", { style: "currency", currency: "ARS" });
           document.getElementById(id).textContent = precioFinal;
