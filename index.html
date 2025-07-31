@@ -45,7 +45,7 @@
     fetch("https://dolarapi.com/v1/dolares/cripto")
       .then(res => res.json())
       .then(data => {
-        const cotizacion = data.blue.venta;
+        const cotizacion = data.venta;
         for (const [id, usdt] of Object.entries(precios)) {
           const precioFinal = (usdt * cotizacion).toLocaleString("es-AR", { 
           style: "currency", 
