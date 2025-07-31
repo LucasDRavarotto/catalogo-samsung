@@ -1,65 +1,82 @@
 <!DOCTYPE html>
 <html lang="es-AR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catálogo Samsung - De Re Tech</title>
-  <link rel="stylesheet" href="estilos.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Samsung - De Re Tech</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-  <h2>📱 Catálogo Samsung - Cotización: Lemon Cash</h2>
+    <h2>📱 Catálogo Samsung - Cotización</h2>
+    <p id="valor-usdt" style="margin-bottom: 20px;">USDT: —</p>
 
-  <h3 class="section-title">🆕 Nuevos</h3>
-  <table>
-    <thead>
-      <tr><th>Modelo</th><th>Precio (USDT)</th><th>Precio en ARS</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>S25 Ultra 512GB</td><td>1250</td><td id="s25u"></td></tr>
-      <tr><td>S25 256GB</td><td>850</td><td id="s25"></td></tr>
-      <tr><td>A56 256GB</td><td>490</td><td id="a56"></td></tr>
-      <tr><td>A55 256GB</td><td>440</td><td id="a55"></td></tr>
-      <tr><td>A36 128GB</td><td>355</td><td id="a36"></td></tr>
-      <tr><td>A16 64GB</td><td>200</td><td id="a16"></td></tr>
-    </tbody>
-  </table>
+    <h3 class="section-title">🆕 Nuevos</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Modelo</th>
+                <th>Precio (USDT)</th>
+                <th>Precio en ARS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>S25 Ultra 512GB</td>
+                <td>1250</td>
+                <td id="s25u"></td>
+            </tr>
+            <tr>
+                <td>S25 256GB</td>
+                <td>850</td>
+                <td id="s25"></td>
+            </tr>
+            <tr>
+                <td>A56 256GB</td>
+                <td>490</td>
+                <td id="a56"></td>
+            </tr>
+            <tr>
+                <td>A55 256GB</td>
+                <td>440</td>
+                <td id="a55"></td>
+            </tr>
+            <tr>
+                <td>A36 128GB</td>
+                <td>355</td>
+                <td id="a36"></td>
+            </tr>
+            <tr>
+                <td>A16 64GB</td>
+                <td>200</td>
+                <td id="a16"></td>
+            </tr>
+        </tbody>
+    </table>
 
-  <h3 class="section-title">♻️ Usados</h3>
-  <table>
-    <thead>
-      <tr><th>Modelo</th><th>Precio (USDT)</th><th>Precio en ARS</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>A54 256GB</td><td>330</td><td id="a54"></td></tr>
-      <tr><td>S23 Ultra 256GB</td><td>580</td><td id="s23u"></td></tr>
-    </tbody>
-  </table>
+    <h3 class="section-title">♻️ Usados</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Modelo</th>
+                <th>Precio (USDT)</th>
+                <th>Precio en ARS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>A54 256GB</td>
+                <td>330</td>
+                <td id="a54"></td>
+            </tr>
+            <tr>
+                <td>S23 Ultra 256GB</td>
+                <td>580</td>
+                <td id="s23u"></td>
+            </tr>
+        </tbody>
+    </table>
 
-  <script>
-    const precios = {
-      s25u: 1250, s25: 850, a56: 490, a55: 440, a36: 355, a16: 200,
-      a54: 330, s23u: 580
-    };
-
-    fetch("https://criptoya.com/api/lemoncash/usdt/ars")
-      .then(res => res.json())
-      .then(data => {
-        const cotizacion = data.totalAsk;
-        for (const [id, usdt] of Object.entries(precios)) {
-          const precioFinal = (usdt * cotizacion).toLocaleString("es-AR", {
-            style: "currency",
-            currency: "ARS"
-          });
-          document.getElementById(id).textContent = precioFinal;
-        }
-      })
-      .catch(() => {
-        for (const id in precios) {
-          document.getElementById(id).textContent = "Error de conexión";
-        }
-      });
-  </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
