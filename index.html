@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Catálogo Samsung - De Re Tech</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #1a1a1a; color: #eee; padding: 30px; }
+    h2, h3.section-title { color: #00ffc3; border-bottom: 1px solid #444; padding-bottom: 5px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 30px; background: #111; }
+    th, td { padding: 12px 16px; border-bottom: 1px solid #333; }
+    th { background: #222; color: #00ffc3; }
+  </style>
+</head>
+<body>
+
+  <h2>📱 Catálogo Samsung - Cotización: Lemon Cash</h2>
+
+  <h3 class="section-title">🆕 Nuevos</h3>
+  <table>
+    <thead>
+      <tr><th>Modelo</th><th>Precio (USDT)</th><th>Precio en ARS</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>S25 Ultra 512GB</td><td>1250</td><td id="s25u"></td></tr>
+      <tr><td>S25 256GB</td><td>850</td><td id="s25"></td></tr>
+      <tr><td>A56 256GB</td><td>490</td><td id="a56"></td></tr>
+      <tr><td>A55 256GB</td><td>440</td><td id="a55"></td></tr>
+      <tr><td>A36 128GB</td><td>355</td><td id="a36"></td></tr>
+      <tr><td>A16 64GB</td><td>200</td><td id="a16"></td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">♻️ Usados</h3>
+  <table>
+    <thead>
+      <tr><th>Modelo</th><th>Precio (USDT)</th><th>Precio en ARS</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>A54 256GB</td><td>330</td><td id="a54"></td></tr>
+      <tr><td>S23 Ultra 256GB</td><td>580</td><td id="s23u"></td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    const precios = {
+      s25u: 1250, s25: 850, a56: 490, a55: 440, a36: 355, a16: 200,
+      a54: 330, s23u: 580
+    };
+
+    fetch("https://criptoya.com/api/lemoncash/usdt/ars")
+      .then(res => res.json())
+      .then(data => {
+        const cotizacion = data.total;
+        for (const [id, usdt] of Object.entries(precios)) {
+          const precioFinal = (usdt * cotizacion).toLocaleString("es-AR", { style: "currency", currency: "ARS" });
+          document.getElementById(id).textContent = precioFinal;
+        }
+      })
+      .catch(() => {
+        for (const id in precios) {
+          document.getElementById(id).textContent = "Error de conexión";
+        }
+      });
+  </script>
+
+</body>
+</html>
