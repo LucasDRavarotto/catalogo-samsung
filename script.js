@@ -1,44 +1,51 @@
-// Función asíncrona para obtener la cotización del USDT
-async function obtenerCotizacionUSDT() {
+// Función asíncrona para obtener la cotización del Dólar Cripto
+async function obtenerCotizacionCripto() {
     try {
-        const respuesta = await fetch("https://criptoya.com/api/lemoncash/usdt/ars");
+        const respuesta = await fetch("https://dolarapi.com/v1/dolares/cripto");
         const datos = await respuesta.json();
-        return datos.totalAsk;
+        // La API de Dolarapi.com devuelve la cotización de venta en 'venta'
+        return datos.venta; 
     } catch (error) {
-        console.error("Error al obtener la cotización del USDT:", error);
-        return null; // Devuelve null en caso de error
+        console.error("Error al obtener la cotización del Dólar Cripto:", error);
+        return null;
     }
 }
 
 // Función para actualizar todos los precios en la tabla
 async function actualizarPrecios() {
-    const cotizacion = await obtenerCotizacionUSDT();
+    const cotizacion = await obtenerCotizacionCripto();
     const elementoValorUSDT = document.getElementById("valor-usdt");
-    
+
     // Si no se pudo obtener la cotización, mostramos un error
     if (!cotizacion) {
         elementoValorUSDT.textContent = "USDT: Error de conexión";
+        // Recorremos los IDs de los precios para mostrar el error en la tabla también
+        const precios = {
+            s25u: 1250, s25: 850, a56: 490, a55: 440, a36: 355, a16: 200,
+            a54: 330, s23u: 580
+        };
         for (const id in precios) {
             const elemento = document.getElementById(id);
             if (elemento) {
                 elemento.textContent = "Error de conexión";
             }
         }
-        return; // Salimos de la función
+        return;
     }
 
-    // Actualizamos el valor del USDT en la página
-    elementoValorUSDT.textContent = `USDT: AR$ ${cotizacion.toLocaleString("es-AR", {
+    // Actualizamos el valor del Dólar Cripto en la página
+    elementoValorUSDT.textContent = `Dólar Cripto: AR$ ${cotizacion.toLocaleString("es-AR", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     })}`;
 
-    // Recorremos el objeto de precios y actualizamos cada elemento
+    // Objeto con los precios en USDT de tus equipos
     const precios = {
         s25u: 1250, s25: 850, a56: 490, a55: 440, a36: 355, a16: 200,
         a54: 330, s23u: 580
     };
 
+    // Recorremos el objeto de precios y actualizamos cada elemento
     for (const [id, usdt] of Object.entries(precios)) {
         const precioFinal = (usdt * cotizacion).toLocaleString("es-AR", {
             style: "currency",
@@ -46,7 +53,7 @@ async function actualizarPrecios() {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         });
-        
+
         const elemento = document.getElementById(id);
         if (elemento) {
             elemento.textContent = precioFinal;
@@ -58,5 +65,4 @@ async function actualizarPrecios() {
 document.addEventListener("DOMContentLoaded", actualizarPrecios);
 
 // Configuramos una actualización automática cada 5 minutos
-// 5 minutos = 5 * 60 * 1000 milisegundos = 300000
-setInterval(actualizarPrecios, 300000);
+setInterval(actualizarPrecios, 300000); // 300000 milisegundos = 5 minutos
