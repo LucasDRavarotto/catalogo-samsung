@@ -8,7 +8,8 @@
 </head>
 <body>
 
-  <h2>📱 Catálogo Samsung - Cotización: Lemon Cash</h2>
+  <h2>📱 Catálogo Samsung - Cotización</h2>
+  <p id="valor-usdt" style="margin-bottom: 20px;">USDT: —</p>
 
   <h3 class="section-title">🆕 Nuevos</h3>
   <table>
@@ -42,14 +43,14 @@
       a54: 330, s23u: 580
     };
 
-    fetch("https://criptoya.com/api/lemoncash/usdt/ars")
+    fetch("https://dolarapi.com/v1/dolares/cripto")
       .then(res => res.json())
       .then(data => {
-        const cotizacion = data.totalAsk;
+        const cotizacion = data.venta;
         for (const [id, usdt] of Object.entries(precios)) {
-          const precioFinal = (usdt * cotizacion).toLocaleString("es-AR", {
-            style: "currency",
-            currency: "ARS"
+          const precioFinal = (usdt * cotizacion).toLocaleString("es-AR", { 
+          style: "currency", 
+          currency: "ARS" 
           });
           document.getElementById(id).textContent = precioFinal;
         }
@@ -62,4 +63,5 @@
   </script>
 
 </body>
+<script src="script.js"></script>
 </html>
