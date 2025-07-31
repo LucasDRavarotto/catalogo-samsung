@@ -2,7 +2,7 @@
 <html lang="es-AR">
 <head>
 <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo Samsung - De Re Tech</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background: #1a1a1a; color: #eee; padding: 30px; }
@@ -48,12 +48,15 @@
       a54: 330, s23u: 580
     };
 
-    fetch("https://criptoya.com/api/lemoncash/usdt/ars")
+    fetch("https://dolarapi.com/v1/dolares")
       .then(res => res.json())
       .then(data => {
-        const cotizacion = data.totalAsk;
+        const cotizacion = data.blue.venta;
         for (const [id, usdt] of Object.entries(precios)) {
-          const precioFinal = (usdt * cotizacion).toLocaleString("es-AR", { style: "currency", currency: "ARS" });
+          const precioFinal = (usdt * cotizacion).toLocaleString("es-AR", { 
+          style: "currency", 
+          currency: "ARS" 
+          });
           document.getElementById(id).textContent = precioFinal;
         }
       })
