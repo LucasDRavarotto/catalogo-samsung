@@ -1,0 +1,75 @@
+/*
+ * Estos son estilos personalizados que sobrescriben
+ * los de Beer CSS para reforzar la identidad visual.
+ */
+
+/* Personaliza la tipografía de la página */
+body {
+    font-family: 'Roboto', sans-serif; /* Usamos Roboto, una fuente de Google */
+}
+
+/* Estilo para el encabezado de las secciones */
+.section-title {
+    color: #0d47a1; /* Un azul más oscuro */
+    border-bottom: 2px solid #1565c0; /* Una línea azul fuerte */
+    font-size: 1.8em; /* Hacemos el título un poco más grande */
+    font-weight: bold;
+    padding-bottom: 8px;
+    margin-top: 40px;
+}
+
+/* Personaliza el recuadro del precio del dólar */
+#valor-usdt {
+    background-color: #e3f2fd; /* Un azul muy claro */
+    color: #0d47a1; /* Texto azul oscuro */
+    border: 1px solid #90caf9; /* Un borde azul suave */
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Ajustes visuales para el encabezado principal */
+main header {
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+/* Personaliza los encabezados de las tablas */
+thead th {
+    background-color: #1976d2; /* Cambiamos el color de fondo */
+    color: white;
+}
+
+/* Estilo para los precios en pesos para que se destaquen */
+td:last-child {
+    color: #e53935; /* Un rojo vibrante */
+    font-weight: bold;
+}
+
+main.container {
+   border-radius: 12px; /* Un radio moderado */
+   overflow: hidden; /* Asegura que el contenido interno también respete el radio */
+   background-color: var(--bs-white); /* Por si el fondo del body es diferente */
+}
+
+.grid > div {
+   border-radius: 8px; /* Un radio un poco menor */
+   background-color: var(--bs-white); /* Asegura un fondo blanco */
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Una sombra muy suave para destacar */
+   padding: 15px; /* Añade un poco de espacio interno */
+}
+
+.grid > div:first-child {
+   margin-bottom: 10px; /* Espacio entre las secciones en pantallas pequeñas */
+}
+
+@media (min-width: 768px) {
+   .grid > div {
+       margin-bottom: 0; /* Elimina el margen en pantallas más grandes */
+   }
+}
+
+table.responsive {
+   border-radius: 10px;
+   overflow: hidden; /* Importante para que los bordes redondeados se apliquen */
+}
