@@ -5,15 +5,15 @@
 
 /* Personaliza la tipografía de la página */
 body {
-    font-family: 'Roboto', sans-serif; /* Usamos la fuente de Google */
-    background-color: #121820; /* Fondo azul oscuro */
-    color: #e8eaed; /* Texto gris claro */
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f7fa; /* Fondo gris claro */
+    color: #333; /* Texto oscuro */
 }
 
 /* Estilo para el encabezado de las secciones */
 .section-title {
-    color: #a6c8e3; /* Azul claro para los títulos */
-    border-bottom: 2px solid #5d7e9e; /* Un subrayado azul pálido */
+    color: #0d47a1; /* Azul oscuro */
+    border-bottom: 2px solid #1565c0;
     font-size: 1.5em;
     font-weight: bold;
     padding-bottom: 8px;
@@ -22,13 +22,13 @@ body {
 
 /* Personaliza el recuadro del precio del dólar */
 #valor-usdt {
-    background-color: #8ab4f8; /* El color azul claro de los toggles de la imagen */
-    color: #1f2530; /* Texto oscuro para contraste */
+    background-color: #e3f2fd; /* Azul muy claro */
+    color: #0d47a1;
     border-radius: 16px;
     padding: 12px;
     font-size: 1.1em;
     font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Ajustes visuales para el encabezado principal */
@@ -38,9 +38,8 @@ main header {
 }
 
 /* Personaliza los encabezados de las tablas */
-thead th {
-    background-color: #1976d2; /* Cambiamos el color de fondo */
-    color: white;
+tbody tr:hover {
+    background-color: #f0f4f8; /* Gris más claro al pasar el mouse */
 }
 
 /* Estilo para los precios en pesos para que se destaquen */
@@ -54,10 +53,10 @@ tbody tr:hover {
 }
 
 main.container {
-    border-radius: 24px; /* Un radio grande para un estilo suave */
+    border-radius: 24px;
     overflow: hidden;
-    background-color: #1f2530; /* Un azul un poco más claro para la tarjeta principal */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    background-color: #ffffff; /* Fondo blanco */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
 
@@ -81,4 +80,30 @@ main.container {
 table.responsive {
    border-radius: 10px;
    overflow: hidden; /* Importante para que los bordes redondeados se apliquen */
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121820; /* Fondo azul oscuro */
+        color: #e8eaed; /* Texto gris claro */
+    }
+
+    main.container {
+        background-color: #1f2530; /* Azul un poco más claro para la tarjeta principal */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .section-title {
+        color: #a6c8e3; /* Azul claro para los títulos */
+        border-bottom: 2px solid #5d7e9e;
+    }
+
+    #valor-usdt {
+        background-color: #8ab4f8; /* El color azul claro de los toggles de la imagen */
+        color: #1f2530; /* Texto oscuro para contraste */
+    }
+
+    tbody tr:hover {
+        background-color: #2a313b; /* Un color ligeramente diferente al pasar el mouse */
+    }
 }
