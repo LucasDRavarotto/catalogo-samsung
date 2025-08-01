@@ -5,9 +5,13 @@
 
 /* Personaliza la tipografía de la página */
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     background-color: #f5f7fa; /* Fondo gris claro */
     color: #333; /* Texto oscuro */
+}
+
+h2, h3 {
+    font-family: sans-serif;
 }
 
 /* Estilo para el encabezado de las secciones */
@@ -27,12 +31,8 @@ body {
     border-radius: 16px;
     padding: 12px;
     font-size: 1.1em;
-    font-weight: bold;
+    font-weight: 600, bold;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h2, h3, #valor-usdt {
-    font-family: 'Work Sans', sans-serif;
 }
 
 /* Ajustes visuales para el encabezado principal */
