@@ -31,6 +31,10 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+h2, h3, #valor-usdt {
+    font-family: 'Work Sans', sans-serif;
+}
+
 /* Ajustes visuales para el encabezado principal */
 main header {
     padding-top: 30px;
@@ -71,15 +75,15 @@ main.container {
    margin-bottom: 10px; /* Espacio entre las secciones en pantallas pequeñas */
 }
 
+table.responsive {
+   border-radius: 10px;
+   overflow: hidden; /* Importante para que los bordes redondeados se apliquen */
+}
+
 @media (min-width: 768px) {
    .grid > div {
        margin-bottom: 0; /* Elimina el margen en pantallas más grandes */
    }
-}
-
-table.responsive {
-   border-radius: 10px;
-   overflow: hidden; /* Importante para que los bordes redondeados se apliquen */
 }
 
 @media (prefers-color-scheme: dark) {
