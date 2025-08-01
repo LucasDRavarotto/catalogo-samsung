@@ -5,27 +5,30 @@
 
 /* Personaliza la tipografía de la página */
 body {
-    font-family: 'Roboto', sans-serif; /* Usamos Roboto, una fuente de Google */
+    font-family: 'Roboto', sans-serif; /* Usamos la fuente de Google */
+    background-color: #121820; /* Fondo azul oscuro */
+    color: #e8eaed; /* Texto gris claro */
 }
 
 /* Estilo para el encabezado de las secciones */
 .section-title {
-    color: #0d47a1; /* Un azul más oscuro */
-    border-bottom: 2px solid #1565c0; /* Una línea azul fuerte */
-    font-size: 1.8em; /* Hacemos el título un poco más grande */
+    color: #a6c8e3; /* Azul claro para los títulos */
+    border-bottom: 2px solid #5d7e9e; /* Un subrayado azul pálido */
+    font-size: 1.5em;
     font-weight: bold;
     padding-bottom: 8px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 /* Personaliza el recuadro del precio del dólar */
 #valor-usdt {
-    background-color: #e3f2fd; /* Un azul muy claro */
-    color: #0d47a1; /* Texto azul oscuro */
-    border: 1px solid #90caf9; /* Un borde azul suave */
-    border-radius: 12px;
+    background-color: #8ab4f8; /* El color azul claro de los toggles de la imagen */
+    color: #1f2530; /* Texto oscuro para contraste */
+    border-radius: 16px;
     padding: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.1em;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Ajustes visuales para el encabezado principal */
@@ -42,14 +45,20 @@ thead th {
 
 /* Estilo para los precios en pesos para que se destaquen */
 td:last-child {
-    color: #e53935; /* Un rojo vibrante */
-    font-weight: bold;
+    color: #a6c8e3; /* El mismo azul claro que los títulos */
+    font-weight: 700; /* Negrita con la fuente Roboto */
+}
+
+tbody tr:hover {
+    background-color: #2a313b; /* Un color ligeramente diferente al pasar el mouse */
 }
 
 main.container {
-   border-radius: 12px; /* Un radio moderado */
-   overflow: hidden; /* Asegura que el contenido interno también respete el radio */
-   background-color: var(--bs-white); /* Por si el fondo del body es diferente */
+    border-radius: 24px; /* Un radio grande para un estilo suave */
+    overflow: hidden;
+    background-color: #1f2530; /* Un azul un poco más claro para la tarjeta principal */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    padding: 20px;
 }
 
 .grid > div {
