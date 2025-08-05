@@ -53,7 +53,7 @@ td:last-child {
 }
 
 tbody tr:hover {
-    background-color: #2a313b; /* Un color ligeramente diferente al pasar el mouse */
+    background-color: #f5f5f5; /* Un color ligeramente diferente al pasar el mouse */
 }
 
 main.container {
