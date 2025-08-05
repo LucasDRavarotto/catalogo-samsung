@@ -111,3 +111,38 @@ table.responsive {
         background-color: #2a313b; /* Un color ligeramente diferente al pasar el mouse */
     }
 }
+
+/*
+ * Estilo para los botones de la tabla
+ */
+.button.small {
+    padding: 6px 12px; /* Reducimos el padding para que no sean tan grandes */
+    font-size: 0.85em; /* Achicamos un poco la fuente */
+}
+
+/*
+ * Estilo para el contenedor del detalle de cuotas
+ */
+#cuotas-container {
+    padding: 16px;
+    gap: 16px; /* Espacio entre las tarjetas */
+}
+
+/*
+ * Estilo para las tarjetas de cuotas
+ */
+#cuotas-container .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 12px; /* Bordes más redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#cuotas-container .card .h6 {
+    margin-bottom: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+}
