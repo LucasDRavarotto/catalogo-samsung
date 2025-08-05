@@ -110,10 +110,12 @@
     </div>
     </main>
     
-<div class="container margin-top">
-    <h3>Detalle de Cuotas</h3>
-    <div id="cuotas-container" class="grid responsive">
-        </div>
+<div id="cuotas-backdrop" class="modal-backdrop" onclick="ocultarCuotas()">
+    <div id="cuotas-seccion" class="container margin-top" onclick="event.stopPropagation()">
+        <h3>Detalle de Cuotas</h3>
+        <div id="cuotas-container" class="grid responsive">
+            </div>
+    </div>
 </div>
 
     <script type="module" src="https://cdn.jsdelivr.net/npm/beercss@3.11.9/dist/cdn/beer.min.js"></script>

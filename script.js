@@ -80,20 +80,25 @@ const costosFinanciacion = {
 
 // Función para calcular y mostrar las cuotas
 function calcularCuotas(productoId) {
-    // 1. Obtener el precio base en pesos
     const precioEnPesosTexto = document.getElementById(productoId).textContent;
-    // Limpiamos el texto para obtener un número
     const precioBase = parseFloat(precioEnPesosTexto.replace('$', '').replace(/\./g, '').replace(',', '.'));
     
-    // Si no hay un precio válido, salimos de la función
+    // Ahora solo necesitamos el backdrop y el contenedor
+    const cuotasBackdrop = document.getElementById('cuotas-backdrop');
+    const cuotasContainer = document.getElementById('cuotas-container');
+
+    // 1. Limpiamos el contenedor
+    cuotasContainer.innerHTML = '';
+
     if (isNaN(precioBase)) {
-        document.getElementById('cuotas-container').innerHTML = `<p>Error: No se pudo obtener el precio del producto.</p>`;
+        cuotasContainer.innerHTML = `<p class="padding">Error: No se pudo obtener el precio del producto.</p>`;
+        cuotasBackdrop.style.display = 'flex';
         return;
     }
 
     let htmlCuotas = '';
-
-    // 2. Iterar sobre los costos para cada plan de cuotas
+    
+    // 2. Generamos el HTML
     for (const cuotas in costosFinanciacion) {
         const porcentajeRecargo = costosFinanciacion[cuotas];
         const recargo = precioBase * (porcentajeRecargo / 100);
@@ -111,6 +116,12 @@ function calcularCuotas(productoId) {
         `;
     }
 
-    // 3. Insertar el HTML generado en el contenedor
-    document.getElementById('cuotas-container').innerHTML = htmlCuotas;
+    // 3. Insertamos el HTML y mostramos el backdrop
+    cuotasContainer.innerHTML = htmlCuotas;
+    cuotasBackdrop.style.display = 'flex';
+}
+
+// *** Esta función debe ir FUERA de la función 'calcularCuotas' ***
+function ocultarCuotas() {
+    document.getElementById('cuotas-backdrop').style.display = 'none';
 }
