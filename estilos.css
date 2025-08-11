@@ -174,6 +174,20 @@ table.responsive {
     max-width: 90%; /* Para que no ocupe toda la pantalla en escritorio */
 }
 
+/* Posicionamiento del botón de cierre dentro del modal */
+#cuotas-seccion .button.circle {
+    position: absolute; /* Permite posicionarlo con top/right */
+    top: 10px;          /* Separación de la parte superior */
+    right: 10px;        /* Separación de la parte derecha */
+    z-index: 1001;      /* Asegura que esté por encima del título */
+}
+
+/* Ajuste para el título dentro del modal para que no se superponga con el botón */
+#cuotas-seccion h3 {
+    margin-top: 20px; /* Damos un poco más de margen al título */
+    text-align: center; /* Centramos el título */
+}
+
 /* Es importante sobrescribir esta regla, ya que el backdrop tiene un display:flex */
 .modal-backdrop #cuotas-seccion {
     display: block; 
