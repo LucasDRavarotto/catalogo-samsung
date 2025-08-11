@@ -4,10 +4,34 @@
  * ----------------------------------------------------
  */
 
+
+:root {
+    /* Tonos principales extraídos de la imagen */
+    --md-primary: #A0D0F8;         /* Azul claro */
+    --md-on-primary: #144155;      /* Azul profundo / texto sobre primario */
+    
+    --md-surface: #ECECE8;         /* Gris claro para fondo de tarjetas */
+    --md-on-surface: #6C6C64;      /* Gris oscuro para texto sobre superficie */
+    
+    --md-secondary: #3982A6;       /* Azul medio / botones secundarios */
+    --md-on-secondary: #ECECE8;    /* Texto claro sobre secundario */
+    
+    --md-tertiary: #1E5D7D;        /* Azul intenso / badges o énfasis */
+    --md-on-tertiary: #ECECE8;
+
+    /* Colores de alerta o énfasis */
+    --md-accent: rgb(180,164,26);  /* Amarillo dorado para cotización destacada */
+    --md-muted: rgb(135,139,61);   /* Verde oliva apagado para texto secundario */
+    --md-error: rgb(117,63,19);    /* Marrón rojizo para errores o advertencias */
+}
+
+
+
+
 body {
+    background-color: var(--md-surface);
+    color: var(--md-on-surface);
     font-family: 'Work Sans', sans-serif;
-    background-color: #f5f7fa; /* Fondo gris claro */
-    color: #333; /* Texto oscuro */
 }
 
 h2, h3 {
@@ -26,11 +50,10 @@ main header {
 }
 
 main.container {
+    background-color: var(--md-surface);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-radius: 24px;
-    overflow: hidden;
-    background-color: #ffffff; /* Fondo blanco */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    padding: 24px;
 }
 
 .grid > div {
@@ -56,9 +79,12 @@ main.container {
 }
 
 .badge.primary {
-    border-radius: 9999px; /* Efecto de "píldora" */
-    padding: 8px 16px;
-    font-size: 1.1em;
+    background-color: var(--md-tertiary);
+    color: var(--md-on-tertiary);
+    border-radius: 16px;
+    padding: 6px 14px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .section-title {
@@ -84,11 +110,10 @@ table.responsive.card {
 }
 
 thead th {
-    background-color: var(--primary);
-    color: white;
-    font-weight: 500;
+    background-color: var(--md-primary);
+    color: var(--md-on-primary);
+    font-weight: 600;
     padding: 12px 16px;
-    text-align: left;
 }
 
 thead th:first-child {
@@ -100,7 +125,7 @@ thead th:last-child {
 }
 
 tbody tr:hover {
-    background-color: #f0f4f8; /* Un color único y consistente al pasar el mouse */
+    background-color: #ece6f0; /* Un color único y consistente al pasar el mouse */
     color: #333; /* Aseguramos que el texto sea visible */
 }
 
@@ -111,8 +136,16 @@ td:last-child {
 }
 
 .button.small {
+    background-color: var(--md-secondary);
+    color: var(--md-on-secondary);
+    border-radius: 12px;
     padding: 6px 12px;
     font-size: 0.85em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.button.small:hover {
+    background-color: #7a728a;
 }
 
 /*
@@ -152,23 +185,27 @@ td:last-child {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 #cuotas-seccion {
-    display: block !important;
-    background-color: var(--surface-container, #2a313b);
-    padding: 24px;
-    border-radius: 12px;
-    max-width: 90%;
+    background-color: var(--md-surface);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 6px 16px var(--md-shadow);
+    max-width: 600px;
+    width: 90%;
     position: relative;
-    margin: 0 auto;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 #cuotas-seccion h3 {
-    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: 600;
+    color: var(--md-text);
     text-align: center;
+    margin-bottom: 24px;
 }
 
 #cuotas-seccion .button.circle {
@@ -188,19 +225,21 @@ td:last-child {
 }
 
 #cuotas-container .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f6f2f7;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 2px 6px var(--md-shadow);
+    transition: transform 0.2s ease;
 }
 
 #cuotas-container .card .h6 {
     margin-bottom: 8px;
     font-size: 1.1em;
     font-weight: bold;
+}
+
+#cuotas-container .card:hover {
+    transform: scale(1.02);
 }
 
 /*
