@@ -1,9 +1,9 @@
 /*
- * Estos son estilos personalizados que sobrescriben
- * los de Beer CSS para reforzar la identidad visual.
+ * ----------------------------------------------------
+ * ESTILOS BASE Y TIPOGRAFÍA
+ * ----------------------------------------------------
  */
 
-/* Personaliza la tipografía de la página */
 body {
     font-family: 'Work Sans', sans-serif;
     background-color: #f5f7fa; /* Fondo gris claro */
@@ -14,46 +14,15 @@ h2, h3 {
     font-family: sans-serif;
 }
 
-/* Estilo para el encabezado de las secciones */
-.section-title {
-    color: #0d47a1; /* Azul oscuro */
-    border-bottom: 2px solid #1565c0;
-    font-size: 1.5em;
-    font-weight: bold;
-    padding-bottom: 8px;
-    margin-top: 30px;
-}
+/*
+ * ----------------------------------------------------
+ * LAYOUT PRINCIPAL Y CONTENEDORES
+ * ----------------------------------------------------
+ */
 
-/* Personaliza el recuadro del precio del dólar */
-#valor-usdt {
-    background-color: #e3f2fd; /* Azul muy claro */
-    color: #0d47a1;
-    border-radius: 16px;
-    padding: 12px;
-    font-size: 1.1em;
-    font-weight: 600, bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Ajustes visuales para el encabezado principal */
 main header {
     padding-top: 30px;
     padding-bottom: 10px;
-}
-
-/* Personaliza los encabezados de las tablas */
-tbody tr:hover {
-    background-color: #f0f4f8; /* Gris más claro al pasar el mouse */
-}
-
-/* Estilo para los precios en pesos para que se destaquen */
-td:last-child {
-    color: #a6c8e3; /* El mismo azul claro que los títulos */
-    font-weight: 700; /* Negrita con la fuente Roboto */
-}
-
-tbody tr:hover {
-    background-color: #f5f5f5; /* Un color ligeramente diferente al pasar el mouse */
 }
 
 main.container {
@@ -65,79 +34,158 @@ main.container {
 }
 
 .grid > div {
-   border-radius: 8px; /* Un radio un poco menor */
-   background-color: var(--bs-white); /* Asegura un fondo blanco */
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Una sombra muy suave para destacar */
-   padding: 15px; /* Añade un poco de espacio interno */
+    border-radius: 8px; /* Un radio un poco menor */
+    background-color: var(--bs-white);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 15px;
 }
 
 .grid > div:first-child {
-   margin-bottom: 10px; /* Espacio entre las secciones en pantallas pequeñas */
-}
-
-table.responsive {
-   border-radius: 10px;
-   overflow: hidden; /* Importante para que los bordes redondeados se apliquen */
-}
-
-@media (min-width: 768px) {
-   .grid > div {
-       margin-bottom: 0; /* Elimina el margen en pantallas más grandes */
-   }
-}
-
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #121820; /* Fondo azul oscuro */
-        color: #e8eaed; /* Texto gris claro */
-    }
-
-    main.container {
-        background-color: #1f2530; /* Azul un poco más claro para la tarjeta principal */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .section-title {
-        color: #a6c8e3; /* Azul claro para los títulos */
-        border-bottom: 2px solid #5d7e9e;
-    }
-
-    #valor-usdt {
-        background-color: #8ab4f8; /* El color azul claro de los toggles de la imagen */
-        color: #1f2530; /* Texto oscuro para contraste */
-    }
-
-    tbody tr:hover {
-        background-color: #2a313b; /* Un color ligeramente diferente al pasar el mouse */
-    }
+    margin-bottom: 10px;
 }
 
 /*
- * Estilo para los botones de la tabla
+ * ----------------------------------------------------
+ * SECCIONES Y BADGES DE TÍTULO
+ * ----------------------------------------------------
  */
+
+.section-header {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.badge.primary {
+    border-radius: 9999px; /* Efecto de "píldora" */
+    padding: 8px 16px;
+    font-size: 1.1em;
+}
+
+.section-title {
+    color: #0d47a1;
+    border-bottom: 2px solid #1565c0;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding-bottom: 8px;
+    margin-top: 30px;
+}
+
+/*
+ * ----------------------------------------------------
+ * TABLAS Y CONTENIDO
+ * ----------------------------------------------------
+ */
+
+table.responsive.card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--outline-variant);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+thead th {
+    background-color: var(--primary);
+    color: white;
+    font-weight: 500;
+    padding: 12px 16px;
+    text-align: left;
+}
+
+thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+thead th:last-child {
+    border-top-right-radius: 12px;
+}
+
+tbody tr:hover {
+    background-color: #f0f4f8; /* Un color único y consistente al pasar el mouse */
+    color: #333; /* Aseguramos que el texto sea visible */
+}
+
+/* Estilo para los precios en pesos para que se destaquen */
+td:last-child {
+    color: #a6c8e3;
+    font-weight: 700;
+}
+
 .button.small {
-    padding: 6px 12px; /* Reducimos el padding para que no sean tan grandes */
-    font-size: 0.85em; /* Achicamos un poco la fuente */
+    padding: 6px 12px;
+    font-size: 0.85em;
 }
 
 /*
- * Estilo para el contenedor del detalle de cuotas
+ * ----------------------------------------------------
+ * COTIZACIÓN DÓLAR USDT
+ * ----------------------------------------------------
  */
+
+#valor-usdt {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    border-radius: 16px;
+    padding: 12px;
+    font-size: 1.1em;
+    font-weight: bold; /* Corregimos el valor a 'bold' */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/*
+ * ----------------------------------------------------
+ * MODAL DE CUOTAS
+ * ----------------------------------------------------
+ */
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+#cuotas-seccion {
+    display: block !important;
+    background-color: var(--surface-container);
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 90%;
+}
+
+#cuotas-seccion h3 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#cuotas-seccion .button.circle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1001;
+}
+
+.modal-backdrop #cuotas-seccion {
+    display: block;
+}
+
 #cuotas-container {
     padding: 16px;
-    gap: 16px; /* Espacio entre las tarjetas */
+    gap: 16px;
 }
 
-/*
- * Estilo para las tarjetas de cuotas
- */
 #cuotas-container .card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    border-radius: 12px; /* Bordes más redondeados */
+    border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -148,47 +196,39 @@ table.responsive {
 }
 
 /*
- * Estilos para el backdrop
+ * ----------------------------------------------------
+ * MEDIA QUERIES Y MODO OSCURO
+ * ----------------------------------------------------
  */
-.modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semitransparente */
-    display: none; /* Oculto por defecto */
-    z-index: 1000; /* Aseguramos que esté por encima de otros elementos */
-    align-items: center;
-    justify-content: center;
+
+@media (min-width: 768px) {
+    .grid > div {
+        margin-bottom: 0;
+    }
 }
 
-/*
- * Estilos para el contenedor de las cuotas cuando está dentro del backdrop
- */
-#cuotas-seccion {
-    display: block !important; /* Hacemos que sea visible cuando el backdrop se muestre */
-    background-color: var(--surface-container); /* Color de fondo */
-    padding: 24px;
-    border-radius: 12px;
-    max-width: 90%; /* Para que no ocupe toda la pantalla en escritorio */
-}
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121820;
+        color: #e8eaed;
+    }
 
-/* Posicionamiento del botón de cierre dentro del modal */
-#cuotas-seccion .button.circle {
-    position: absolute; /* Permite posicionarlo con top/right */
-    top: 10px;          /* Separación de la parte superior */
-    right: 10px;        /* Separación de la parte derecha */
-    z-index: 1001;      /* Asegura que esté por encima del título */
-}
+    main.container {
+        background-color: #1f2530;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
 
-/* Ajuste para el título dentro del modal para que no se superponga con el botón */
-#cuotas-seccion h3 {
-    margin-top: 20px; /* Damos un poco más de margen al título */
-    text-align: center; /* Centramos el título */
-}
+    .section-title {
+        color: #a6c8e3;
+        border-bottom: 2px solid #5d7e9e;
+    }
 
-/* Es importante sobrescribir esta regla, ya que el backdrop tiene un display:flex */
-.modal-backdrop #cuotas-seccion {
-    display: block; 
+    #valor-usdt {
+        background-color: #8ab4f8;
+        color: #1f2530;
+    }
+
+    tbody tr:hover {
+        background-color: #2a313b;
+    }
 }
