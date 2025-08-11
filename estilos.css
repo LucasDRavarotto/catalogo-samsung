@@ -4,10 +4,17 @@
  * ----------------------------------------------------
  */
 
+:root {
+    --primary: #00878A;     /* Un cian oscuro para botones */
+    --secondary: #00A6A9;   /* Un cian más claro */
+    --surface-container: #E0FFFE; /* Un cian muy claro para superficies */
+    --on-surface: #002222;  /* Texto oscuro para contraste */
+}
+ 
 body {
     font-family: 'Work Sans', sans-serif;
-    background-color: #f5f7fa; /* Fondo gris claro */
-    color: #333; /* Texto oscuro */
+    background-color: #F0FBFB;
+    color: var(--on-surface);
 }
 
 h2, h3 {
@@ -154,8 +161,9 @@ td:last-child {
     display: block !important;
     background-color: var(--surface-container);
     padding: 24px;
-    border-radius: 12px;
+    border-radius: 28px;
     max-width: 90%;
+     width: 500px;
 }
 
 #cuotas-seccion h3 {
@@ -201,6 +209,15 @@ td:last-child {
  * ----------------------------------------------------
  */
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Variables de color para el tema oscuro */
+        --primary: #4DD0E1; /* Cian claro para botones */
+        --secondary: #26C6DA;
+        --surface-container: #1C292A; /* Un gris verdoso oscuro */
+        --on-surface: #E0FFFE; /* Texto cian claro */
+    }
+
 @media (min-width: 768px) {
     .grid > div {
         margin-bottom: 0;
@@ -209,12 +226,11 @@ td:last-child {
 
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: #121820;
-        color: #e8eaed;
+        background-color: #0d1616; /* Fondo muy oscuro */
+        color: var(--on-surface);
     }
-
     main.container {
-        background-color: #1f2530;
+        background-color: #121E1E;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
@@ -224,11 +240,18 @@ td:last-child {
     }
 
     #valor-usdt {
-        background-color: #8ab4f8;
-        color: #1f2530;
+        background-color: #334D4D;
+        color: var(--on-surface);
     }
 
     tbody tr:hover {
-        background-color: #2a313b;
+        background-color: #1A2727;
+    }
+}
+
+@media (max-width: 600px) {
+    #cuotas-seccion {
+        width: 90%;
+        max-width: none;
     }
 }
