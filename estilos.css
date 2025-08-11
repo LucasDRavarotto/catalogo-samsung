@@ -4,23 +4,14 @@
  * ----------------------------------------------------
  */
 
-:root {
-    /* Variables de color para el tema claro (Paleta Cian) */
-    --primary: #00878A;     /* Un cian oscuro para elementos principales */
-    --secondary: #00A6A9;   /* Un cian más claro, para énfasis secundario */
-    --surface-container: #E0FFFE; /* Un cian muy claro para fondos de tarjetas y modales */
-    --on-surface: #002222;  /* Texto oscuro para contraste sobre --surface-container */
-    --outline-variant: #C2C8C7; /* Un gris sutil para bordes de elementos */
-}
- 
 body {
     font-family: 'Work Sans', sans-serif;
-    background-color: #F0FBFB; /* Fondo general de la página, muy claro */
-    color: var(--on-surface); /* Color de texto base, usando la variable */
+    background-color: #f5f7fa; /* Fondo gris claro */
+    color: #333; /* Texto oscuro */
 }
 
 h2, h3 {
-    font-family: sans-serif; /* Mantiene la fuente por defecto para títulos */
+    font-family: sans-serif;
 }
 
 /*
@@ -37,14 +28,14 @@ main header {
 main.container {
     border-radius: 24px;
     overflow: hidden;
-    background-color: #ffffff; /* Este color blanco para el fondo principal lo mantengo para un contraste fuerte */
+    background-color: #ffffff; /* Fondo blanco */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
 
 .grid > div {
-    border-radius: 8px;
-    background-color: var(--surface-container); /* Usamos la variable para el fondo de las cuadrículas */
+    border-radius: 8px; /* Un radio un poco menor */
+    background-color: var(--bs-white);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     padding: 15px;
 }
@@ -65,16 +56,11 @@ main.container {
 }
 
 .badge.primary {
-    border-radius: 9999px;
+    border-radius: 9999px; /* Efecto de "píldora" */
     padding: 8px 16px;
     font-size: 1.1em;
-    background-color: var(--primary); /* El badge usa el color primario */
-    color: white; /* El texto del badge será blanco para contraste */
 }
 
-/* Eliminamos section-title porque ahora usamos badge para los títulos de sección */
-/* Si aún necesitas un section-title para otros propósitos, ajústalo para usar variables */
-/*
 .section-title {
     color: #0d47a1;
     border-bottom: 2px solid #1565c0;
@@ -83,7 +69,6 @@ main.container {
     padding-bottom: 8px;
     margin-top: 30px;
 }
-*/
 
 /*
  * ----------------------------------------------------
@@ -94,12 +79,12 @@ main.container {
 table.responsive.card {
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid var(--outline-variant); /* Borde sutil usando la variable */
+    border: 1px solid var(--outline-variant);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 thead th {
-    background-color: var(--primary); /* Encabezados de tabla usan el color primario */
+    background-color: var(--primary);
     color: white;
     font-weight: 500;
     padding: 12px 16px;
@@ -115,13 +100,13 @@ thead th:last-child {
 }
 
 tbody tr:hover {
-    background-color: var(--surface-container); /* Fondo más suave al pasar el mouse */
-    color: var(--on-surface); /* Aseguramos que el texto sea visible */
+    background-color: #f0f4f8; /* Un color único y consistente al pasar el mouse */
+    color: #333; /* Aseguramos que el texto sea visible */
 }
 
 /* Estilo para los precios en pesos para que se destaquen */
 td:last-child {
-    color: #0d47a1; /* Mejor contraste en modo claro */
+    color: #a6c8e3;
     font-weight: 700;
 }
 
@@ -137,12 +122,12 @@ td:last-child {
  */
 
 #valor-usdt {
-    background-color: var(--surface-container); /* Usamos la variable para el fondo */
-    color: var(--on-surface); /* Usamos la variable para el texto */
+    background-color: #e3f2fd;
+    color: #0d47a1;
     border-radius: 16px;
     padding: 12px;
     font-size: 1.1em;
-    font-weight: bold;
+    font-weight: bold; /* Corregimos el valor a 'bold' */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -159,34 +144,31 @@ td:last-child {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
-    display: none;
+    display: flex;
     z-index: 1000;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.3s ease;
-    opacity: 0;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
-.modal-backdrop.visible {
-    display: flex;
-    opacity: 1;
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 #cuotas-seccion {
-    background-color: var(--surface-container, #fff);
+    display: block !important;
+    background-color: var(--surface-container, #2a313b);
     padding: 24px;
     border-radius: 12px;
     max-width: 90%;
-    max-height: 90%;
-    overflow-y: auto;
     position: relative;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
 }
 
 #cuotas-seccion h3 {
     margin-top: 20px;
     text-align: center;
-    color: var(--on-surface); /* Aseguramos que el título del modal use el color de texto */
 }
 
 #cuotas-seccion .button.circle {
@@ -212,7 +194,6 @@ td:last-child {
     align-items: center;
     text-align: center;
     border-radius: 12px;
-    background-color: var(--surface-container); /* Las tarjetas internas del modal también usan la variable */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -220,7 +201,6 @@ td:last-child {
     margin-bottom: 8px;
     font-size: 1.1em;
     font-weight: bold;
-    color: var(--on-surface); /* El texto de las tarjetas de cuotas también usa la variable */
 }
 
 /*
@@ -235,37 +215,28 @@ td:last-child {
     }
 }
 
-@media (max-width: 600px) {
-    #cuotas-seccion {
-        width: 90%;
-        max-width: none;
-    }
-}
-
 @media (prefers-color-scheme: dark) {
-    :root {
-        /* Variables de color para el tema oscuro (Paleta Cian) */
-        --primary: #4DD0E1; /* Cian claro para botones en modo oscuro */
-        --secondary: #26C6DA;
-        --surface-container: #1C292A; /* Un gris verdoso oscuro para superficies */
-        --on-surface: #E0FFFE; /* Texto cian claro para contraste */
-        --outline-variant: #5D7E81; /* Borde más claro en modo oscuro */
+    body {
+        background-color: #121820;
+        color: #e8eaed;
     }
 
-    body {
-        background-color: #0d1616; /* Fondo muy oscuro */
-        color: var(--on-surface);
-    }
-    
     main.container {
-        background-color: #121E1E;
+        background-color: #1f2530;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     }
 
-    td:last-child {
-        color: #8ab4f8; /* Azul claro en modo oscuro */
+    .section-title {
+        color: #a6c8e3;
+        border-bottom: 2px solid #5d7e9e;
     }
 
-    /* Eliminamos las definiciones individuales aquí, ahora las variables en :root se encargan */
-    /* .section-title, #valor-usdt, tbody tr:hover, thead th, etc., ahora usan las variables de :root */
+    #valor-usdt {
+        background-color: #8ab4f8;
+        color: #1f2530;
+    }
+
+    tbody tr:hover {
+        background-color: #2a313b;
+    }
 }
