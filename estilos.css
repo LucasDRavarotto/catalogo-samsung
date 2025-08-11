@@ -4,38 +4,42 @@
  * ----------------------------------------------------
  */
 
-
 :root {
-    /* Tonos principales extraídos de la imagen */
-    --md-primary: #A0D0F8;         /* Azul claro */
-    --md-on-primary: #144155;      /* Azul profundo / texto sobre primario */
-    
-    --md-surface: #ECECE8;         /* Gris claro para fondo de tarjetas */
-    --md-on-surface: #6C6C64;      /* Gris oscuro para texto sobre superficie */
-    
-    --md-secondary: #3982A6;       /* Azul medio / botones secundarios */
-    --md-on-secondary: #ECECE8;    /* Texto claro sobre secundario */
-    
-    --md-tertiary: #1E5D7D;        /* Azul intenso / badges o énfasis */
-    --md-on-tertiary: #ECECE8;
+    /* Paleta de Colores (Modo Claro) - Estilo "Navy Seal" */
+    --md-primary: #1A3E5F;         /* Azul marino oscuro, para acciones principales y énfasis */
+    --md-on-primary: #FFFFFF;      /* Texto blanco sobre el primario */
+    --md-secondary: #2B577E;       /* Azul medio, para acentos secundarios y hover */
+    --md-on-secondary: #FFFFFF;    /* Texto blanco sobre el secundario */
+    --md-tertiary: #5D8AA8;        /* Azul grisáceo claro (ej. valor USDT, tarjetas de cuotas) */
+    --md-on-tertiary: #FFFFFF;     /* Texto blanco sobre el terciario */
 
-    /* Colores de alerta o énfasis */
-    --md-accent: rgb(180,164,26);  /* Amarillo dorado para cotización destacada */
-    --md-muted: rgb(135,139,61);   /* Verde oliva apagado para texto secundario */
-    --md-error: rgb(117,63,19);    /* Marrón rojizo para errores o advertencias */
+    --md-surface: #E0E6EB;         /* Gris azulado claro para fondos de tarjetas/componentes */
+    --md-on-surface: #121820;      /* Gris muy oscuro / texto general sobre superficies claras */
+    --md-background: #F0F3F7;      /* Fondo general de la página, un gris azulado muy claro */
+
+    /* Colores de alerta o énfasis (se mantienen neutrales o se adaptan si es necesario) */
+    --md-accent: #DAA520;          /* Dorado/marrón para acentos o alertas */
+    --md-muted: #808080;           /* Gris medio para texto secundario */
+    --md-error: #B00020;           /* Rojo estándar para errores */
+
+    /* Otros elementos de Material Design */
+    --md-shadow: rgba(0, 0, 0, 0.2); /* Sombra estándar, ligeramente más fuerte */
+    --md-outline-variant: #90A4AE; /* Gris azulado para bordes sutiles */
+
+    /* Transiciones generales para elementos interactivos */
+    --md-transition-time: 0.2s ease-in-out;
 }
-
-
-
 
 body {
-    background-color: var(--md-surface);
+    background-color: var(--md-background);
     color: var(--md-on-surface);
     font-family: 'Work Sans', sans-serif;
+    line-height: 1.6;
 }
 
-h2, h3 {
-    font-family: sans-serif;
+h2, h3, h6 { /* Incluimos h6 para los badges de sección */
+    font-family: sans-serif; /* Mantiene la fuente por defecto del sistema */
+    font-weight: 700; /* Aseguramos que sean negrita */
 }
 
 /*
@@ -50,17 +54,24 @@ main header {
 }
 
 main.container {
-    background-color: var(--md-surface);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: var(--md-surface); /* Fondo de la tarjeta principal */
+    box-shadow: 0 6px 16px var(--md-shadow); /* Sombra ligeramente más pronunciada */
     border-radius: 24px;
     padding: 24px;
+    overflow: hidden;
 }
 
 .grid > div {
-    border-radius: 8px; /* Un radio un poco menor */
-    background-color: var(--bs-white);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    padding: 15px;
+    border-radius: 16px; /* Más redondeado para un look suave */
+    background-color: white; /* Fondo blanco para las tarjetas internas, para contraste */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra más definida */
+    padding: 20px; /* Más padding para espacio */
+    transition: box-shadow var(--md-transition-time); /* Solo transición de sombra */
+}
+
+.grid > div:hover {
+    transform: none; /* ELIMINAMOS CUALQUIER TRANSFORMACIÓN DE ANIMACIÓN */
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
 }
 
 .grid > div:first-child {
@@ -74,27 +85,48 @@ main.container {
  */
 
 .section-header {
-    margin-top: 30px;
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
 }
 
 .badge.primary {
-    background-color: var(--md-tertiary);
-    color: var(--md-on-tertiary);
-    border-radius: 16px;
-    padding: 6px 14px;
+    background-color: var(--md-primary) !important;
+    color: var(--md-on-primary) !important;
+    border-radius: 9999px;
+    padding: 10px 24px;
     font-weight: 500;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    font-size: 1.2em;
+    box-shadow: 0 4px 8px var(--md-shadow);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background-color var(--md-transition-time);
+    transform: none;
 }
 
-.section-title {
-    color: #0d47a1;
-    border-bottom: 2px solid #1565c0;
-    font-size: 1.5em;
-    font-weight: bold;
-    padding-bottom: 8px;
-    margin-top: 30px;
+.badge.primary:hover {
+    background-color: var(--md-secondary) !important;
+    transform: none;
+    box-shadow: 0 8px 18px var(--md-shadow);
 }
+
+.badge.primary i.material-icons {
+    font-size: 1.5em;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.badge.primary h6 {
+    margin: 0;
+    padding: 0;
+    line-height: 1.2;
+    display: inline-block;
+}
+
 
 /*
  * ----------------------------------------------------
@@ -103,17 +135,20 @@ main.container {
  */
 
 table.responsive.card {
+    margin-top: 50px !important;
     border-radius: 12px;
     overflow: hidden;
-    border: 1px solid var(--outline-variant);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--md-outline-variant);
+    box-shadow: 0 4px 8px var(--md-shadow);
+    background-color: var(--md-surface);
 }
 
 thead th {
-    background-color: var(--md-primary);
-    color: var(--md-on-primary);
+    background-color: var(--md-primary); /* Fondo de los encabezados de tabla: el color primario */
+    color: var(--md-on-primary); /* Texto de los encabezados de tabla */
     font-weight: 600;
-    padding: 12px 16px;
+    padding: 14px 18px; /* Más padding */
+    text-align: left;
 }
 
 thead th:first-child {
@@ -124,28 +159,35 @@ thead th:last-child {
     border-top-right-radius: 12px;
 }
 
+tbody tr {
+    transition: background-color var(--md-transition-time), color var(--md-transition-time);
+}
+
 tbody tr:hover {
-    background-color: #ece6f0; /* Un color único y consistente al pasar el mouse */
-    color: #333; /* Aseguramos que el texto sea visible */
+    background-color: var(--md-secondary); /* Color de fondo al pasar el mouse */
+    color: var(--md-on-secondary); /* Texto blanco para asegurar contraste en hover */
 }
 
 /* Estilo para los precios en pesos para que se destaquen */
 td:last-child {
-    color: #a6c8e3;
+    color: var(--md-primary); /* Destacamos con el color primario */
     font-weight: 700;
 }
 
 .button.small {
-    background-color: var(--md-secondary);
-    color: var(--md-on-secondary);
+    background-color: var(--md-primary); /* Fondo de los botones */
+    color: var(--md-on-primary); /* Texto de los botones */
     border-radius: 12px;
-    padding: 6px 12px;
-    font-size: 0.85em;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    padding: 8px 16px; /* Más padding */
+    font-size: 0.9em; /* Un poco más grande */
+    box-shadow: 0 2px 4px var(--md-shadow);
+    transition: background-color var(--md-transition-time), box-shadow var(--md-transition-time), transform var(--md-transition-time);
 }
 
 .button.small:hover {
-    background-color: #7a728a;
+    background-color: var(--md-secondary); /* Cambio de color al pasar el mouse */
+    transform: translateY(-1px); /* Pequeño efecto de elevación */
+    box-shadow: 0 4px 10px var(--md-shadow);
 }
 
 /*
@@ -155,13 +197,14 @@ td:last-child {
  */
 
 #valor-usdt {
-    background-color: #e3f2fd;
-    color: #0d47a1;
+    background-color: var(--md-tertiary); /* Fondo del recuadro del dólar, el azul claro */
+    color: var(--md-on-tertiary); /* Texto del recuadro del dólar */
     border-radius: 16px;
-    padding: 12px;
-    font-size: 1.1em;
-    font-weight: bold; /* Corregimos el valor a 'bold' */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px; /* Más padding */
+    font-size: 1.2em; /* Más grande */
+    font-weight: bold;
+    box-shadow: 0 4px 8px var(--md-shadow);
+    text-align: center; /* Aseguramos que esté centrado */
 }
 
 /*
@@ -176,7 +219,7 @@ td:last-child {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente más oscuro */
     display: flex;
     z-index: 1000;
     align-items: center;
@@ -190,29 +233,32 @@ td:last-child {
 }
 
 #cuotas-seccion {
-    background-color: var(--md-surface);
-    border-radius: 24px;
+    background-color: var(--md-surface); /* Fondo del modal: el gris muy claro */
+    border-radius: 28px; /* Bordes generosos */
     padding: 32px;
-    box-shadow: 0 6px 16px var(--md-shadow);
-    max-width: 600px;
-    width: 90%;
+    box-shadow: 0 8px 20px var(--md-shadow); /* Sombra más pronunciada */
+    max-width: 600px; /* Ancho máximo en escritorio */
+    width: 90%; /* Ancho adaptable */
     position: relative;
     animation: fadeIn 0.3s ease-in-out;
 }
 
 #cuotas-seccion h3 {
-    font-size: 1.5em;
+    font-size: 1.8em; /* Título del modal más grande */
     font-weight: 600;
-    color: var(--md-text);
+    color: var(--md-on-surface); /* Color del título del modal (azul profundo) */
     text-align: center;
     margin-bottom: 24px;
 }
 
 #cuotas-seccion .button.circle {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px; /* Ajustamos la posición para que no se superponga */
+    right: 15px;
     z-index: 1001;
+    background-color: var(--md-primary); /* Botón de cierre con color primario */
+    color: var(--md-on-primary); /* Texto del botón de cierre */
+    box-shadow: 0 2px 4px var(--md-shadow);
 }
 
 .modal-backdrop #cuotas-seccion {
@@ -220,26 +266,28 @@ td:last-child {
 }
 
 #cuotas-container {
-    padding: 16px;
+    padding: 0; /* Quitamos padding aquí para que el gap lo maneje */
     gap: 16px;
 }
 
 #cuotas-container .card {
-    background-color: #f6f2f7;
+    background-color: var(--md-tertiary); /* Fondo de las tarjetas individuales de cuotas (el azul claro) */
+    color: var(--md-on-tertiary); /* Texto de las tarjetas de cuotas (azul profundo) */
     border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 2px 6px var(--md-shadow);
-    transition: transform 0.2s ease;
+    padding: 20px; /* Más padding para los detalles */
+    box-shadow: 0 2px 8px var(--md-shadow);
+    transition: transform var(--md-transition-time);
 }
 
 #cuotas-container .card .h6 {
     margin-bottom: 8px;
-    font-size: 1.1em;
+    font-size: 1.2em; /* Un poco más grande */
     font-weight: bold;
+    color: var(--md-primary); /* Título de la tarjeta de cuotas en color primario */
 }
 
 #cuotas-container .card:hover {
-    transform: scale(1.02);
+    transform: scale(1.02); /* Efecto de crecimiento al pasar el mouse */
 }
 
 /*
@@ -254,28 +302,119 @@ td:last-child {
     }
 }
 
-@media (prefers-color-scheme: dark) {
+@media (max-width: 600px) {
+    #cuotas-seccion {
+        width: 90%;
+        max-width: none;
+        padding: 20px; /* Menos padding en móvil */
+    }
+    table.responsive.card td,
+    table.responsive.card th {
+        padding: 10px 12px; /* Ajustamos padding para tablas */
+    }
     body {
-        background-color: #121820;
-        color: #e8eaed;
+        font-size: 15px; /* Ajustamos tamaño de fuente base */
+    }
+    .badge.primary {
+        font-size: 1.1em;
+        padding: 6px 16px;
+    }
+    #cuotas-seccion h3 {
+        font-size: 1.6em; /* Título del modal un poco más pequeño en móvil */
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Paleta de Colores (Modo Oscuro) - Contraparte de tu paleta clara */
+        --md-primary: #3982A6;         /* Un azul medio para primario en oscuro */
+        --md-on-primary: #144155;      /* Texto oscuro sobre primario */
+        --md-secondary: #1E5D7D;       /* Azul/Teal oscuro para secundario */
+        --md-on-secondary: #ECECE8;    /* Texto claro sobre secundario */
+        --md-tertiary: #5D8AA8;         /* El azul claro se mantiene, o una versión ligeramente más oscura si se prefiere */
+        --md-on-tertiary: #144155;     /* Texto oscuro sobre terciario */
+
+        --md-surface: #144155;         /* Fondo de tarjetas/componentes en oscuro */
+        --md-on-surface: #A0D0F8;      /* Texto claro general en oscuro */
+        --md-background: #0D1616;      /* Fondo general de la página en oscuro, casi negro */
+
+        --md-shadow: rgba(0, 0, 0, 0.6); /* Sombra más pronunciada en oscuro */
+        --md-outline-variant: #6C6C64; /* Borde visible en oscuro */
     }
 
+    body {
+        background-color: var(--md-background);
+        color: var(--md-on-surface);
+    }
+    
     main.container {
-        background-color: #1f2530;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        background-color: var(--md-surface);
+        box-shadow: 0 6px 16px var(--md-shadow);
     }
 
-    .section-title {
-        color: #a6c8e3;
-        border-bottom: 2px solid #5d7e9e;
+    .grid > div {
+        background-color: var(--md-background); /* Hago el fondo de las tarjetas del grid más oscuro */
+        box-shadow: 0 2px 8px var(--md-shadow);
+    }
+    
+    table.responsive.card {
+        background-color: var(--md-background); /* Hago el fondo de las tablas más oscuro */
+        border: 1px solid var(--md-outline-variant);
     }
 
-    #valor-usdt {
-        background-color: #8ab4f8;
-        color: #1f2530;
+    thead th {
+        background-color: var(--md-primary);
+        color: var(--md-on-primary);
     }
 
     tbody tr:hover {
-        background-color: #2a313b;
+        background-color: var(--md-secondary);
+        color: var(--md-on-secondary);
+    }
+
+    td:last-child {
+        color: var(--md-tertiary); /* Destaco los precios con el azul claro en oscuro */
+    }
+
+    .button.small {
+        background-color: var(--md-primary);
+        color: var(--md-on-primary);
+        box-shadow: 0 2px 4px var(--md-shadow);
+    }
+
+    .button.small:hover {
+        background-color: var(--md-secondary);
+        box-shadow: 0 4px 10px var(--md-shadow);
+    }
+
+    #valor-usdt {
+        background-color: var(--md-primary); /* El recuadro del dólar usa el primario oscuro en modo oscuro */
+        color: var(--md-on-primary);
+        box-shadow: 0 4px 8px var(--md-shadow);
+    }
+
+    #cuotas-seccion {
+        background-color: var(--md-surface);
+        box-shadow: 0 8px 20px var(--md-shadow);
+    }
+
+    #cuotas-seccion h3 {
+        color: var(--md-on-surface); /* Título del modal en on-surface para mayor legibilidad */
+    }
+
+    #cuotas-seccion .button.circle {
+        background-color: var(--md-secondary); /* Botón de cierre en secundario oscuro */
+        color: var(--md-on-secondary);
+        box-shadow: 0 2px 4px var(--md-shadow);
+    }
+
+    #cuotas-container .card {
+        background-color: var(--md-tertiary);
+        color: var(--md-on-tertiary);
+        box-shadow: 0 2px 6px var(--md-shadow);
+    }
+
+    #cuotas-container .card .h6 {
+        color: var(--md-primary);
     }
 }
