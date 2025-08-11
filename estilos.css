@@ -158,12 +158,13 @@ td:last-child {
 }
 
 #cuotas-seccion {
-    display: block !important;
-    background-color: var(--surface-container);
+    background-color: var(--surface-container); /* Un color neutro que se adapta */
     padding: 24px;
-    border-radius: 28px;
+    border-radius: 28px; /* Un radio más grande para un estilo más suave */
     max-width: 90%;
-     width: 500px;
+    width: 500px; /* Ancho fijo para escritorio */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    position: relative; /* Para que el botón de cierre se posicione correctamente */
 }
 
 #cuotas-seccion h3 {
@@ -217,10 +218,18 @@ td:last-child {
         --surface-container: #1C292A; /* Un gris verdoso oscuro */
         --on-surface: #E0FFFE; /* Texto cian claro */
     }
+}
 
 @media (min-width: 768px) {
     .grid > div {
         margin-bottom: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    #cuotas-seccion {
+        width: 90%;
+        max-width: none;
     }
 }
 
@@ -246,12 +255,5 @@ td:last-child {
 
     tbody tr:hover {
         background-color: #1A2727;
-    }
-}
-
-@media (max-width: 600px) {
-    #cuotas-seccion {
-        width: 90%;
-        max-width: none;
     }
 }
