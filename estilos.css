@@ -96,7 +96,7 @@ main.container {
 
 .section-header {
     margin-top: 20px;
-    margin-bottom: 50px; /* ¡AUMENTADO! Más margen inferior para separar del inicio de la tabla */
+    margin-bottom: 60px; /* ¡AUMENTADO! Más margen inferior para separar del inicio de la tabla */
     text-align: center;
     position: relative;
     z-index: 2; /* Aseguramos que el badge esté por encima */
@@ -147,17 +147,16 @@ main.container {
 .table-container {
     overflow-x: auto; /* Permite el scroll horizontal si la tabla es muy ancha */
     width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
-    margin-top: 0; /* Eliminar cualquier margen superior que pueda estar heredando */
 }
 
 table.responsive.card {
-    min-width: 500px; /* Establece un ancho mínimo para la tabla para que no se "aplasten" las columnas */
+    min-width: 600px; /* Establece un ancho mínimo para la tabla para que no se "aplasten" las columnas */
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--md-outline-variant);
     box-shadow: 0 4px 8px var(--md-shadow);
     background-color: var(--md-surface);
-    margin-top: 0 !important; /* Reconfirmamos que no haya margen superior en la tabla */
+    margin-top: -30 !important; /* Reconfirmamos que no haya margen superior en la tabla */
 }
 
 thead th {
@@ -414,6 +413,7 @@ td:last-child {
     table.responsive.card {
         background-color: var(--md-surface); /* Hago el fondo de las tablas más oscuro */
         border: 1px solid var(--md-outline-variant);
+        margin-top: -30px !important;
     }
 
     thead th {
