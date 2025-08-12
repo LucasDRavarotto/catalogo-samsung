@@ -37,9 +37,17 @@ body {
     line-height: 1.6;
 }
 
-h2, h3, h6 { /* Incluimos h6 para los badges de sección */
-    font-family: sans-serif; /* Mantiene la fuente por defecto del sistema */
-    font-weight: 700; /* Aseguramos que sean negrita */
+h2, h3, h6 {
+    font-family: sans-serif;
+    font-weight: 700;
+}
+
+/* Ajuste para el icono del título principal */
+h2 .material-icons {
+    font-size: 1em; /* Reducimos el tamaño para que no se corte */
+    vertical-align: text-bottom; /* Mejor alineación vertical con el texto */
+    margin-right: 2px; /* Espacio entre el icono y el texto */
+    color: var(--md-primary); /* Color del icono principal */
 }
 
 /*
@@ -54,28 +62,30 @@ main header {
 }
 
 main.container {
-    background-color: var(--md-surface); /* Fondo de la tarjeta principal */
-    box-shadow: 0 6px 16px var(--md-shadow); /* Sombra ligeramente más pronunciada */
+    background-color: var(--md-surface);
+    box-shadow: 0 6px 16px var(--md-shadow);
     border-radius: 24px;
     padding: 24px;
-    overflow: hidden;
+    overflow: hidden; /* Asegura que no haya contenido desbordando */
 }
 
+.grid {
+    display: grid; /* Se define aquí el display grid */
+    gap: 24px;
+}
+
+/* Ajustes para las tarjetas dentro del grid */
 .grid > div {
-    border-radius: 16px; /* Más redondeado para un look suave */
-    background-color: white; /* Fondo blanco para las tarjetas internas, para contraste */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra más definida */
-    padding: 20px; /* Más padding para espacio */
-    transition: box-shadow var(--md-transition-time); /* Solo transición de sombra */
+    border-radius: 16px;
+    background-color: white; /* Fondo blanco para las tarjetas internas */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: box-shadow var(--md-transition-time);
+    transform: none; /* Eliminar transformaciones indeseadas */
 }
 
 .grid > div:hover {
-    transform: none; /* ELIMINAMOS CUALQUIER TRANSFORMACIÓN DE ANIMACIÓN */
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
-}
-
-.grid > div:first-child {
-    margin-bottom: 10px;
 }
 
 /*
@@ -85,48 +95,48 @@ main.container {
  */
 
 .section-header {
-    margin-top: 10px;
-    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-bottom: 50px; /* ¡AUMENTADO! Más margen inferior para separar del inicio de la tabla */
     text-align: center;
     position: relative;
-    z-index: 2;
+    z-index: 2; /* Aseguramos que el badge esté por encima */
 }
 
 .badge.primary {
-    background-color: var(--md-primary) !important;
-    color: var(--md-on-primary) !important;
-    border-radius: 9999px;
-    padding: 10px 24px;
+    background-color: var(--md-primary) !important; /* Forzamos el color */
+    color: var(--md-on-primary) !important; /* Forzamos el color del texto */
+    border-radius: 9999px; /* Efecto píldora */
+    padding: 8px 20px;
     font-weight: 500;
     font-size: 1.2em;
     box-shadow: 0 4px 8px var(--md-shadow);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+    display: inline-flex; /* Permite alineación interna */
+    align-items: center; /* Alinea verticalmente ícono y texto */
+    justify-content: center; /* Centra horizontalmente el contenido */
+    gap: 8px; /* Espacio entre icono y texto */
     transition: background-color var(--md-transition-time);
-    transform: none;
+    transform: none; /* Eliminar animaciones de transformación */
 }
 
 .badge.primary:hover {
-    background-color: var(--md-secondary) !important;
-    transform: none;
+    background-color: var(--md-secondary) !important; /* Forzamos el color secundario en hover */
+    transform: none; /* Eliminar animaciones de transformación */
     box-shadow: 0 8px 18px var(--md-shadow);
 }
 
 .badge.primary i.material-icons {
-    font-size: 1.5em;
-    vertical-align: middle;
-    line-height: 1;
+    font-size: 1.5em; /* Tamaño del ícono */
+    vertical-align: middle; /* Alineación vertical */
+    line-height: 1; /* Ayuda a la alineación */
+    /* margin-top: -2px; Si aún se ve desalineado, puedes probar esto como un ajuste fino */
 }
 
 .badge.primary h6 {
-    margin: 0;
-    padding: 0;
+    margin: 0; /* Eliminar márgenes por defecto */
+    padding: 0; /* Eliminar padding por defecto */
     line-height: 1.2;
     display: inline-block;
 }
-
 
 /*
  * ----------------------------------------------------
@@ -134,21 +144,29 @@ main.container {
  * ----------------------------------------------------
  */
 
+.table-container {
+    overflow-x: auto; /* Permite el scroll horizontal si la tabla es muy ancha */
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+    margin-top: 0; /* Eliminar cualquier margen superior que pueda estar heredando */
+}
+
 table.responsive.card {
-    margin-top: 50px !important;
+    min-width: 500px; /* Establece un ancho mínimo para la tabla para que no se "aplasten" las columnas */
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--md-outline-variant);
     box-shadow: 0 4px 8px var(--md-shadow);
     background-color: var(--md-surface);
+    margin-top: 0 !important; /* Reconfirmamos que no haya margen superior en la tabla */
 }
 
 thead th {
-    background-color: var(--md-primary); /* Fondo de los encabezados de tabla: el color primario */
-    color: var(--md-on-primary); /* Texto de los encabezados de tabla */
+    background-color: var(--md-primary);
+    color: var(--md-on-primary);
     font-weight: 600;
-    padding: 14px 18px; /* Más padding */
+    padding: 14px 18px;
     text-align: left;
+    white-space: nowrap; /* Evita que el texto de los encabezados se rompa */
 }
 
 thead th:first-child {
@@ -164,29 +182,34 @@ tbody tr {
 }
 
 tbody tr:hover {
-    background-color: var(--md-secondary); /* Color de fondo al pasar el mouse */
-    color: var(--md-on-secondary); /* Texto blanco para asegurar contraste en hover */
+    background-color: var(--md-secondary);
+    color: var(--md-on-secondary);
+}
+
+td {
+    white-space: nowrap; /* Evita que el texto de las celdas se rompa */
+    padding: 10px 18px; /* Ajuste de padding para las celdas */
 }
 
 /* Estilo para los precios en pesos para que se destaquen */
 td:last-child {
-    color: var(--md-primary); /* Destacamos con el color primario */
+    color: var(--md-primary);
     font-weight: 700;
 }
 
 .button.small {
-    background-color: var(--md-primary); /* Fondo de los botones */
-    color: var(--md-on-primary); /* Texto de los botones */
+    background-color: var(--md-primary);
+    color: var(--md-on-primary);
     border-radius: 12px;
-    padding: 8px 16px; /* Más padding */
-    font-size: 0.9em; /* Un poco más grande */
+    padding: 8px 16px;
+    font-size: 0.9em;
     box-shadow: 0 2px 4px var(--md-shadow);
     transition: background-color var(--md-transition-time), box-shadow var(--md-transition-time), transform var(--md-transition-time);
 }
 
 .button.small:hover {
-    background-color: var(--md-secondary); /* Cambio de color al pasar el mouse */
-    transform: translateY(-1px); /* Pequeño efecto de elevación */
+    background-color: var(--md-secondary);
+    transform: translateY(-1px);
     box-shadow: 0 4px 10px var(--md-shadow);
 }
 
@@ -197,14 +220,14 @@ td:last-child {
  */
 
 #valor-usdt {
-    background-color: var(--md-tertiary); /* Fondo del recuadro del dólar, el azul claro */
-    color: var(--md-on-tertiary); /* Texto del recuadro del dólar */
+    background-color: var(--md-tertiary);
+    color: var(--md-on-tertiary);
     border-radius: 16px;
-    padding: 16px; /* Más padding */
-    font-size: 1.2em; /* Más grande */
+    padding: 16px;
+    font-size: 1.2em;
     font-weight: bold;
     box-shadow: 0 4px 8px var(--md-shadow);
-    text-align: center; /* Aseguramos que esté centrado */
+    text-align: center;
 }
 
 /*
@@ -220,7 +243,7 @@ td:last-child {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    display: none; /* <--- ¡IMPORTANTE! Oculto por defecto */
+    display: none; /* Oculto por defecto, JS lo muestra con display:flex */
     z-index: 1000;
     align-items: center;
     justify-content: center;
@@ -235,15 +258,14 @@ td:last-child {
 #cuotas-seccion {
     background-color: var(--md-surface);
     border-radius: 28px;
-    padding: 32px; /* Mantener padding generoso para escritorio */
+    padding: 32px;
     box-shadow: 0 8px 20px var(--md-shadow);
-    max-width: 600px; /* Ancho máximo en escritorio */
-    width: 90%; /* Ancho adaptable */
+    max-width: 600px;
+    width: 90%;
     position: relative;
     animation: fadeIn 0.3s ease-in-out;
-    /* Esto es importante para que el modal no sea demasiado alto en móviles */
-    max-height: 90vh; /* Máximo 90% del alto del viewport */
-    overflow-y: auto; /* Permite scroll si el contenido es muy largo */
+    max-height: 90vh; /* Máximo 90% del alto del viewport en móvil */
+    overflow-y: auto; /* Permite scroll vertical si el contenido es muy largo */
 }
 
 #cuotas-seccion h3 {
@@ -264,15 +286,10 @@ td:last-child {
     box-shadow: 0 2px 4px var(--md-shadow);
 }
 
-.modal-backdrop #cuotas-seccion {
-    display: block;
-}
-
 #cuotas-container {
     padding: 0;
     gap: 16px;
-    /* Ajustes para el grid interno del modal en móviles */
-    display: grid; /* Aseguramos que es un grid */
+    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Columnas responsivas */
 }
 
@@ -302,22 +319,41 @@ td:last-child {
  * ----------------------------------------------------
  */
 
+/* Estilos para pantallas de escritorio (a partir de 768px de ancho) */
 @media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas en escritorio */
+    }
     .grid > div {
-        margin-bottom: 0;
+        margin-bottom: 0; /* Elimina margen inferior entre tarjetas en escritorio */
     }
 }
 
-@media (max-width: 600px) {
-    #cuotas-seccion {
-        width: 95%; /* Un poco más de ancho en móvil */
-        max-width: none;
-        padding: 20px; /* Menos padding en móvil para no desbordar */
+/* Estilos para pantallas de tablets y móviles (hasta 767px de ancho) */
+@media (max-width: 767px) {
+    /* El contenedor principal debe adaptarse al 100% del ancho */
+    main.container {
+        padding: 16px; /* Menos padding en móvil */
+        border-radius: 12px; /* Menos borde en móvil */
     }
-    table.responsive.card td,
-    table.responsive.card th {
-        padding: 10px 12px;
+
+    .grid {
+        grid-template-columns: 1fr; /* Una sola columna en móviles */
     }
+    
+    .grid > div {
+        margin-bottom: 24px; /* Espacio entre las tarjetas apiladas en móvil */
+    }
+    .grid > div:last-child {
+        margin-bottom: 0; /* Elimina el margen inferior de la última tarjeta del grid */
+    }
+
+    .section-header {
+        margin-top: 20px;
+        margin-bottom: 15px; /* Ajuste para móviles */
+    }
+
+    /* Ajustes generales de texto y padding para móvil */
     body {
         font-size: 15px;
     }
@@ -325,30 +361,38 @@ td:last-child {
         font-size: 1.1em;
         padding: 6px 16px;
     }
+    #cuotas-seccion {
+        width: 95%;
+        padding: 20px; /* Menos padding en el modal para móvil */
+    }
     #cuotas-seccion h3 {
         font-size: 1.6em;
     }
-    /* Aseguramos que las tarjetas de cuotas en móvil también se adapten bien */
     #cuotas-container .card {
         padding: 15px;
     }
+    table.responsive.card th,
+    table.responsive.card td {
+        padding: 10px 12px; /* Ajuste de padding para las celdas de la tabla en móvil */
+    }
 }
 
+/* Modo Oscuro */
 @media (prefers-color-scheme: dark) {
     :root {
-        /* Paleta de Colores (Modo Oscuro) - Contraparte de tu paleta clara */
-        --md-primary: #3982A6;         /* Un azul medio para primario en oscuro */
-        --md-on-primary: #144155;      /* Texto oscuro sobre primario */
-        --md-secondary: #1E5D7D;       /* Azul/Teal oscuro para secundario */
-        --md-on-secondary: #ECECE8;    /* Texto claro sobre secundario */
+        /* Paleta de Colores (Modo Oscuro) - Contraparte de la paleta "Navy Seal" */
+        --md-primary: #2B577E;         /* Azul medio para primario en oscuro */
+        --md-on-primary: #FFFFFF;      /* Texto blanco sobre primario */
+        --md-secondary: #1A3E5F;       /* Azul marino oscuro para secundario */
+        --md-on-secondary: #FFFFFF;    /* Texto blanco sobre secundario */
         --md-tertiary: #5D8AA8;         /* El azul claro se mantiene, o una versión ligeramente más oscura si se prefiere */
-        --md-on-tertiary: #144155;     /* Texto oscuro sobre terciario */
+        --md-on-tertiary: #FFFFFF;     /* Texto blanco sobre terciario */
 
-        --md-surface: #144155;         /* Fondo de tarjetas/componentes en oscuro */
-        --md-on-surface: #A0D0F8;      /* Texto claro general en oscuro */
-        --md-background: #0D1616;      /* Fondo general de la página en oscuro, casi negro */
+        --md-surface: #121820;         /* Fondo de tarjetas/componentes en oscuro */
+        --md-on-surface: #E0E6EB;      /* Texto claro general en oscuro */
+        --md-background: #0D1013;      /* Fondo general de la página en oscuro, casi negro */
 
-        --md-shadow: rgba(0, 0, 0, 0.6); /* Sombra más pronunciada en oscuro */
+        --md-shadow: rgba(0, 0, 0, 0.6);
         --md-outline-variant: #6C6C64; /* Borde visible en oscuro */
     }
 
@@ -363,12 +407,12 @@ td:last-child {
     }
 
     .grid > div {
-        background-color: var(--md-background); /* Hago el fondo de las tarjetas del grid más oscuro */
+        background-color: var(--md-surface); /* Hago el fondo de las tarjetas del grid más oscuro */
         box-shadow: 0 2px 8px var(--md-shadow);
     }
     
     table.responsive.card {
-        background-color: var(--md-background); /* Hago el fondo de las tablas más oscuro */
+        background-color: var(--md-surface); /* Hago el fondo de las tablas más oscuro */
         border: 1px solid var(--md-outline-variant);
     }
 
@@ -409,11 +453,11 @@ td:last-child {
     }
 
     #cuotas-seccion h3 {
-        color: var(--md-on-surface); /* Título del modal en on-surface para mayor legibilidad */
+        color: var(--md-on-surface);
     }
 
     #cuotas-seccion .button.circle {
-        background-color: var(--md-secondary); /* Botón de cierre en secundario oscuro */
+        background-color: var(--md-secondary);
         color: var(--md-on-secondary);
         box-shadow: 0 2px 4px var(--md-shadow);
     }

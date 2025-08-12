@@ -21,57 +21,66 @@
 
     <main class="container">
         <header class="padding">
-            <h2 class="align-center">📱 Catálogo Samsung - Cotización</h2>
+            <h2 class="align-center"><i class="material-icons">phone_android</i> Catálogo Samsung - Cotización</h2>
             <!-- El valor del dólar cripto se actualizará dinámicamente -->
             <p id="valor-usdt" class="align-center" style="margin-bottom: 20px;">Dólar Cripto: —</p>
         </header>
 
-        <div class="grid">
+    <div class="grid">
+    <!-- Sección de equipos Nuevos -->
     <div class="s12 m6 l6">
         <div class="row section-header">
             <div class="badge primary">
-                <i class="material-icons">new_releases</i> <!-- Ícono para Nuevos -->
+                <i class="material-icons">new_releases</i>
                 <h6>Nuevos</h6>
             </div>
         </div>
-        <table class="responsive card">
-            <thead>
-                <tr>
-                    <th>Modelo</th>
-                    <th>Precio (USDT)</th>
-                    <th>Precio en ARS</th>
-                    <th>Cuotas</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>S25 Ultra 512GB</td><td>1250</td><td id="s25u"></td><td><button class="button small" onclick="calcularCuotas('s25u')">Calcular</button></td></tr>
-                <tr><td>S25 256GB</td><td>850</td><td id="s25"></td><td><button class="button small" onclick="calcularCuotas('s25')">Calcular</button></td></tr>
-                <tr><td>A56 256GB</td><td>490</td><td id="a56"></td><td><button class="button small" onclick="calcularCuotas('a56')">Calcular</button></td></tr>
-                <tr><td>A55 256GB</td><td>440</td><td id="a55"></td><td><button class="button small" onclick="calcularCuotas('a55')">Calcular</button></td></tr>
-                <tr><td>A36 128GB</td><td>355</td><td id="a36"></td><td><button class="button small" onclick="calcularCuotas('a36')">Calcular</button></td></tr>
-                <tr><td>A16 64GB</td><td>200</td><td id="a16"></td><td><button class="button small" onclick="calcularCuotas('a16')">Calcular</button></td></tr>
-            </tbody>
-        </table>
+        <!-- INICIO del nuevo div para la tabla de Nuevos -->
+        <div class="table-container">
+            <table class="responsive card">
+                <thead>
+                    <tr>
+                        <th>Modelo</th>
+                        <th>Precio (USDT)</th>
+                        <th>Precio en ARS</th>
+                        <th>Cuotas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>S25 Ultra 512GB</td><td>1250</td><td id="s25u"></td><td><button class="button small" onclick="calcularCuotas('s25u')">Calcular</button></td></tr>
+                    <tr><td>S25 256GB</td><td>850</td><td id="s25"></td><td><button class="button small" onclick="calcularCuotas('s25')">Calcular</button></td></tr>
+                    <tr><td>A56 256GB</td><td>490</td><td id="a56"></td><td><button class="button small" onclick="calcularCuotas('a56')">Calcular</button></td></tr>
+                    <tr><td>A55 256GB</td><td>440</td><td id="a55"></td><td><button class="button small" onclick="calcularCuotas('a55')">Calcular</button></td></tr>
+                    <tr><td>A36 128GB</td><td>355</td><td id="a36"></td><td><button class="button small" onclick="calcularCuotas('a36')">Calcular</button></td></tr>
+                    <tr><td>A16 64GB</td><td>200</td><td id="a16"></td><td><button class="button small" onclick="calcularCuotas('a16')">Calcular</button></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- FIN del nuevo div para la tabla de Nuevos -->
     </div>
 
+    <!-- Sección de equipos Usados -->
     <div class="s12 m6 l6">
         <div class="row section-header">
             <div class="badge primary">
-                <i class="material-icons">recycling</i> <!-- Ícono para Usados -->
+                <i class="material-icons">recycling</i>
                 <h6>Usados</h6>
             </div>
         </div>
-        <table class="responsive card">
-            <thead>
-                <tr><th>Modelo</th><th>Precio (USDT)</th><th>Precio en ARS</th><th>Cuotas</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>A54 256GB</td><td>330</td><td id="a54"></td><td><button class="button small" onclick="calcularCuotas('a54')">Calcular</button></td></tr>
-                <tr><td>S23 Ultra 256GB</td><td>580</td><td id="s23u"></td><td><button class="button small" onclick="calcularCuotas('s23u')">Calcular</button></td></tr>
-            </tbody>
-        </table>
+        <!-- INICIO del nuevo div para la tabla de Usados -->
+        <div class="table-container">
+            <table class="responsive card">
+                <thead>
+                    <tr><th>Modelo</th><th>Precio (USDT)</th><th>Precio en ARS</th><th>Cuotas</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>A54 256GB</td><td>330</td><td id="a54"></td><td><button class="button small" onclick="calcularCuotas('a54')">Calcular</button></td></tr>
+                    <tr><td>S23 Ultra 256GB</td><td>580</td><td id="s23u"></td><td><button class="button small" onclick="calcularCuotas('s23u')">Calcular</button></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- FIN del nuevo div para la tabla de Usados -->
     </div>
-</div>
     
     <!-- Modal de Cuotas (ahora fuera del main para su posicionamiento fixed) -->
     <div id="cuotas-backdrop" class="modal-backdrop" onclick="ocultarCuotas()">
