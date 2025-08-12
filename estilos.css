@@ -156,7 +156,7 @@ table.responsive.card {
     border: 1px solid var(--md-outline-variant);
     box-shadow: 0 4px 8px var(--md-shadow);
     background-color: var(--md-surface);
-    margin-top: -30 !important; /* Reconfirmamos que no haya margen superior en la tabla */
+    margin-top: 0 !important; /* Reconfirmamos que no haya margen superior en la tabla */
 }
 
 thead th {
@@ -341,7 +341,8 @@ td:last-child {
     }
     
     .grid > div {
-        margin-bottom: 24px; /* Espacio entre las tarjetas apiladas en móvil */
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--md-outline-variant);
     }
     .grid > div:last-child {
         margin-bottom: 0; /* Elimina el margen inferior de la última tarjeta del grid */
@@ -349,7 +350,7 @@ td:last-child {
 
     .section-header {
         margin-top: 20px;
-        margin-bottom: 15px; /* Ajuste para móviles */
+        margin-bottom: 40px; /* Ajuste para móviles */
     }
 
     /* Ajustes generales de texto y padding para móvil */
@@ -370,6 +371,9 @@ td:last-child {
     #cuotas-container .card {
         padding: 15px;
     }
+    table.responsive.card {
+        min-width: 100%;
+
     table.responsive.card th,
     table.responsive.card td {
         padding: 10px 12px; /* Ajuste de padding para las celdas de la tabla en móvil */
