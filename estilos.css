@@ -309,3 +309,13 @@ td:last-child {
     margin-bottom: 32px;
     padding-bottom: 16px;
     border-bottom: 1px solid var
+  }
+   .section-header {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: left; /* Alineación izquierda */
+  }
+
+  .badge.primary {
+    justify-content: flex-start; /* Contenido alineado a la izquierda */
+  }
