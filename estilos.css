@@ -1,478 +1,311 @@
-/*
- * ----------------------------------------------------
- * ESTILOS BASE Y TIPOGRAFÍA
- * ----------------------------------------------------
- */
-
+/* ----------------------------------------------------
+ * PALETA DE COLORES Y VARIABLES
+ * ---------------------------------------------------- */
 :root {
-    /* Paleta de Colores (Modo Claro) - Estilo "Navy Seal" */
-    --md-primary: #1A3E5F;         /* Azul marino oscuro, para acciones principales y énfasis */
-    --md-on-primary: #FFFFFF;      /* Texto blanco sobre el primario */
-    --md-secondary: #2B577E;       /* Azul medio, para acentos secundarios y hover */
-    --md-on-secondary: #FFFFFF;    /* Texto blanco sobre el secundario */
-    --md-tertiary: #5D8AA8;        /* Azul grisáceo claro (ej. valor USDT, tarjetas de cuotas) */
-    --md-on-tertiary: #FFFFFF;     /* Texto blanco sobre el terciario */
-
-    --md-surface: #E0E6EB;         /* Gris azulado claro para fondos de tarjetas/componentes */
-    --md-on-surface: #121820;      /* Gris muy oscuro / texto general sobre superficies claras */
-    --md-background: #F0F3F7;      /* Fondo general de la página, un gris azulado muy claro */
-
-    /* Colores de alerta o énfasis (se mantienen neutrales o se adaptan si es necesario) */
-    --md-accent: #DAA520;          /* Dorado/marrón para acentos o alertas */
-    --md-muted: #808080;           /* Gris medio para texto secundario */
-    --md-error: #B00020;           /* Rojo estándar para errores */
-
-    /* Otros elementos de Material Design */
-    --md-shadow: rgba(0, 0, 0, 0.2); /* Sombra estándar, ligeramente más fuerte */
-    --md-outline-variant: #90A4AE; /* Gris azulado para bordes sutiles */
-
-    /* Transiciones generales para elementos interactivos */
-    --md-transition-time: 0.2s ease-in-out;
+  --md-primary: #1A3E5F;
+  --md-on-primary: #FFFFFF;
+  --md-secondary: #2B577E;
+  --md-on-secondary: #FFFFFF;
+  --md-tertiary: #5D8AA8;
+  --md-on-tertiary: #FFFFFF;
+  --md-surface: #E0E6EB;
+  --md-on-surface: #121820;
+  --md-background: #F0F3F7;
+  --md-accent: #DAA520;
+  --md-muted: #808080;
+  --md-error: #B00020;
+  --md-shadow: rgba(0, 0, 0, 0.2);
+  --md-outline-variant: #90A4AE;
+  --md-transition-time: 0.2s ease-in-out;
 }
 
+/* ----------------------------------------------------
+ * TIPOGRAFÍA Y BASE
+ * ---------------------------------------------------- */
 body {
-    background-color: var(--md-background);
-    color: var(--md-on-surface);
-    font-family: 'Work Sans', sans-serif;
-    line-height: 1.6;
+  background-color: var(--md-background);
+  color: var(--md-on-surface);
+  font-family: 'Work Sans', sans-serif;
+  line-height: 1.6;
 }
 
 h2, h3, h6 {
-    font-family: sans-serif;
-    font-weight: 700;
+  font-family: sans-serif;
+  font-weight: 700;
 }
 
-/* Ajuste para el icono del título principal */
 h2 .material-icons {
-    font-size: 1em; /* Reducimos el tamaño para que no se corte */
-    vertical-align: text-bottom; /* Mejor alineación vertical con el texto */
-    margin-right: 2px; /* Espacio entre el icono y el texto */
-    color: var(--md-primary); /* Color del icono principal */
+  font-size: 1em;
+  vertical-align: text-bottom;
+  margin-right: 2px;
+  color: var(--md-primary);
 }
 
-/*
- * ----------------------------------------------------
- * LAYOUT PRINCIPAL Y CONTENEDORES
- * ----------------------------------------------------
- */
-
+/* ----------------------------------------------------
+ * LAYOUT PRINCIPAL
+ * ---------------------------------------------------- */
 main header {
-    padding-top: 30px;
-    padding-bottom: 10px;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 main.container {
-    background-color: var(--md-surface);
-    box-shadow: 0 6px 16px var(--md-shadow);
-    border-radius: 24px;
-    padding: 24px;
-    overflow: hidden; /* Asegura que no haya contenido desbordando */
+  background-color: var(--md-surface);
+  box-shadow: 0 6px 16px var(--md-shadow);
+  border-radius: 24px;
+  padding: 24px;
+  overflow: hidden;
 }
 
 .grid {
-    display: grid; /* Se define aquí el display grid */
-    gap: 24px;
+  display: grid;
+  gap: 24px;
 }
 
-/* Ajustes para las tarjetas dentro del grid */
 .grid > div {
-    border-radius: 16px;
-    background-color: white; /* Fondo blanco para las tarjetas internas */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    transition: box-shadow var(--md-transition-time);
-    transform: none; /* Eliminar transformaciones indeseadas */
+  border-radius: 16px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: box-shadow var(--md-transition-time);
 }
 
 .grid > div:hover {
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
 }
 
-/*
- * ----------------------------------------------------
- * SECCIONES Y BADGES DE TÍTULO
- * ----------------------------------------------------
- */
-
+/* ----------------------------------------------------
+ * SECCIONES Y BADGES
+ * ---------------------------------------------------- */
 .section-header {
-    margin-top: 20px;
-    margin-bottom: 60px; /* ¡AUMENTADO! Más margen inferior para separar del inicio de la tabla */
-    text-align: center;
-    position: relative;
-    z-index: 2; /* Aseguramos que el badge esté por encima */
+  margin-top: 20px;
+  margin-bottom: 60px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .badge.primary {
-    background-color: var(--md-primary) !important; /* Forzamos el color */
-    color: var(--md-on-primary) !important; /* Forzamos el color del texto */
-    border-radius: 9999px; /* Efecto píldora */
-    padding: 8px 20px;
-    font-weight: 500;
-    font-size: 1.2em;
-    box-shadow: 0 4px 8px var(--md-shadow);
-    display: inline-flex; /* Permite alineación interna */
-    align-items: center; /* Alinea verticalmente ícono y texto */
-    justify-content: center; /* Centra horizontalmente el contenido */
-    gap: 8px; /* Espacio entre icono y texto */
-    transition: background-color var(--md-transition-time);
-    transform: none; /* Eliminar animaciones de transformación */
+  background-color: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+  border-radius: 9999px;
+  padding: 8px 20px;
+  font-weight: 500;
+  font-size: 1.2em;
+  box-shadow: 0 4px 8px var(--md-shadow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color var(--md-transition-time);
 }
 
 .badge.primary:hover {
-    background-color: var(--md-secondary) !important; /* Forzamos el color secundario en hover */
-    transform: none; /* Eliminar animaciones de transformación */
-    box-shadow: 0 8px 18px var(--md-shadow);
+  background-color: var(--md-secondary) !important;
+  box-shadow: 0 8px 18px var(--md-shadow);
 }
 
 .badge.primary i.material-icons {
-    font-size: 1.5em; /* Tamaño del ícono */
-    vertical-align: middle; /* Alineación vertical */
-    line-height: 1; /* Ayuda a la alineación */
-    /* margin-top: -2px; Si aún se ve desalineado, puedes probar esto como un ajuste fino */
+  font-size: 1.5em;
+  vertical-align: middle;
+  line-height: 1;
 }
 
 .badge.primary h6 {
-    margin: 0; /* Eliminar márgenes por defecto */
-    padding: 0; /* Eliminar padding por defecto */
-    line-height: 1.2;
-    display: inline-block;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  display: inline-block;
 }
 
-/*
- * ----------------------------------------------------
- * TABLAS Y CONTENIDO
- * ----------------------------------------------------
- */
-
+/* ----------------------------------------------------
+ * TABLAS
+ * ---------------------------------------------------- */
 .table-container {
-    overflow-x: auto; /* Permite el scroll horizontal si la tabla es muy ancha */
-    width: 100%; /* Asegura que el contenedor ocupe todo el ancho disponible */
+  overflow-x: auto;
+  width: 100%;
 }
 
 table.responsive.card {
-    min-width: 600px; /* Establece un ancho mínimo para la tabla para que no se "aplasten" las columnas */
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--md-outline-variant);
-    box-shadow: 0 4px 8px var(--md-shadow);
-    background-color: var(--md-surface);
-    margin-top: 0 !important; /* Reconfirmamos que no haya margen superior en la tabla */
+  min-width: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--md-outline-variant);
+  box-shadow: 0 4px 8px var(--md-shadow);
+  background-color: var(--md-surface);
+  margin-top: 0 !important;
 }
 
 thead th {
-    background-color: var(--md-primary);
-    color: var(--md-on-primary);
-    font-weight: 600;
-    padding: 14px 18px;
-    text-align: left;
-    white-space: nowrap; /* Evita que el texto de los encabezados se rompa */
+  background-color: var(--md-primary);
+  color: var(--md-on-primary);
+  font-weight: 600;
+  padding: 14px 18px;
+  text-align: left;
+  white-space: nowrap;
 }
 
 thead th:first-child {
-    border-top-left-radius: 12px;
+  border-top-left-radius: 12px;
 }
 
 thead th:last-child {
-    border-top-right-radius: 12px;
+  border-top-right-radius: 12px;
 }
 
 tbody tr {
-    transition: background-color var(--md-transition-time), color var(--md-transition-time);
+  transition: background-color var(--md-transition-time), color var(--md-transition-time);
 }
 
 tbody tr:hover {
-    background-color: var(--md-secondary);
-    color: var(--md-on-secondary);
+  background-color: var(--md-secondary);
+  color: var(--md-on-secondary);
 }
 
 td {
-    white-space: nowrap; /* Evita que el texto de las celdas se rompa */
-    padding: 10px 18px; /* Ajuste de padding para las celdas */
+  white-space: nowrap;
+  padding: 10px 18px;
 }
 
-/* Estilo para los precios en pesos para que se destaquen */
 td:last-child {
-    color: var(--md-primary);
-    font-weight: 700;
+  color: var(--md-primary);
+  font-weight: 700;
 }
 
 .button.small {
-    background-color: var(--md-primary);
-    color: var(--md-on-primary);
-    border-radius: 12px;
-    padding: 8px 16px;
-    font-size: 0.9em;
-    box-shadow: 0 2px 4px var(--md-shadow);
-    transition: background-color var(--md-transition-time), box-shadow var(--md-transition-time), transform var(--md-transition-time);
+  background-color: var(--md-primary);
+  color: var(--md-on-primary);
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 0.9em;
+  box-shadow: 0 2px 4px var(--md-shadow);
+  transition: background-color var(--md-transition-time), box-shadow var(--md-transition-time), transform var(--md-transition-time);
 }
 
 .button.small:hover {
-    background-color: var(--md-secondary);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px var(--md-shadow);
+  background-color: var(--md-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px var(--md-shadow);
 }
 
-/*
- * ----------------------------------------------------
- * COTIZACIÓN DÓLAR USDT
- * ----------------------------------------------------
- */
-
+/* ----------------------------------------------------
+ * VALOR USDT
+ * ---------------------------------------------------- */
 #valor-usdt {
-    background-color: var(--md-tertiary);
-    color: var(--md-on-tertiary);
-    border-radius: 16px;
-    padding: 16px;
-    font-size: 1.2em;
-    font-weight: bold;
-    box-shadow: 0 4px 8px var(--md-shadow);
-    text-align: center;
+  background-color: var(--md-tertiary);
+  color: var(--md-on-tertiary);
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 1.2em;
+  font-weight: bold;
+  box-shadow: 0 4px 8px var(--md-shadow);
+  text-align: center;
 }
 
-/*
- * ----------------------------------------------------
- * MODAL DE CUOTAS
- * ----------------------------------------------------
- */
-
+/* ----------------------------------------------------
+ * MODAL CUOTAS
+ * ---------------------------------------------------- */
 .modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: none; /* Oculto por defecto, JS lo muestra con display:flex */
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 #cuotas-seccion {
-    background-color: var(--md-surface);
-    border-radius: 28px;
-    padding: 32px;
-    box-shadow: 0 8px 20px var(--md-shadow);
-    max-width: 600px;
-    width: 90%;
-    position: relative;
-    animation: fadeIn 0.3s ease-in-out;
-    max-height: 90vh; /* Máximo 90% del alto del viewport en móvil */
-    overflow-y: auto; /* Permite scroll vertical si el contenido es muy largo */
+  background-color: var(--md-surface);
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: 0 8px 20px var(--md-shadow);
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 #cuotas-seccion h3 {
-    font-size: 1.8em;
-    font-weight: 600;
-    color: var(--md-on-surface);
-    text-align: center;
-    margin-bottom: 24px;
+  font-size: 1.8em;
+  font-weight: 600;
+  color: var(--md-on-surface);
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 #cuotas-seccion .button.circle {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    z-index: 1001;
-    background-color: var(--md-primary);
-    color: var(--md-on-primary);
-    box-shadow: 0 2px 4px var(--md-shadow);
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1001;
+  background-color: var(--md-primary);
+  color: var(--md-on-primary);
+  box-shadow: 0 2px 4px var(--md-shadow);
 }
 
 #cuotas-container {
-    padding: 0;
-    gap: 16px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Columnas responsivas */
+  padding: 0;
+  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
 #cuotas-container .card {
-    background-color: var(--md-tertiary);
-    color: var(--md-on-tertiary);
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: 0 2px 8px var(--md-shadow);
-    transition: transform var(--md-transition-time);
+  background-color: var(--md-tertiary);
+  color: var(--md-on-tertiary);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 8px var(--md-shadow);
+  transition: transform var(--md-transition-time);
 }
 
 #cuotas-container .card .h6 {
-    margin-bottom: 8px;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: var(--md-primary);
+  margin-bottom: 8px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--md-primary);
 }
 
 #cuotas-container .card:hover {
-    transform: scale(1.02);
+  transform: scale(1.02);
 }
 
-/*
- * ----------------------------------------------------
- * MEDIA QUERIES Y MODO OSCURO
- * ----------------------------------------------------
- */
-
-/* Estilos para pantallas de escritorio (a partir de 768px de ancho) */
+/* ----------------------------------------------------
+ * MEDIA QUERIES
+ * ---------------------------------------------------- */
 @media (min-width: 768px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr); /* Dos columnas en escritorio */
-    }
-    .grid > div {
-        margin-bottom: 0; /* Elimina margen inferior entre tarjetas en escritorio */
-    }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid > div {
+    margin-bottom: 0;
+  }
 }
 
-/* Estilos para pantallas de tablets y móviles (hasta 767px de ancho) */
 @media (max-width: 767px) {
-    /* El contenedor principal debe adaptarse al 100% del ancho */
-    main.container {
-        padding: 16px; /* Menos padding en móvil */
-        border-radius: 12px; /* Menos borde en móvil */
-    }
+  main.container {
+    padding: 16px;
+    border-radius: 12px;
+  }
 
-    .grid {
-        grid-template-columns: 1fr; /* Una sola columna en móviles */
-    }
-    
-    .grid > div {
-        padding-bottom: 16px;
-        border-bottom: 1px solid var(--md-outline-variant);
-    }
-    .grid > div:last-child {
-        margin-bottom: 0; /* Elimina el margen inferior de la última tarjeta del grid */
-    }
+  .grid {
+    grid-template-columns: 1fr;
+  }
 
-    .section-header {
-        margin-top: 20px;
-        margin-bottom: 40px; /* Ajuste para móviles */
-    }
-
-    /* Ajustes generales de texto y padding para móvil */
-    body {
-        font-size: 15px;
-    }
-    .badge.primary {
-        font-size: 1.1em;
-        padding: 6px 16px;
-    }
-    #cuotas-seccion {
-        width: 95%;
-        padding: 20px; /* Menos padding en el modal para móvil */
-    }
-    #cuotas-seccion h3 {
-        font-size: 1.6em;
-    }
-    #cuotas-container .card {
-        padding: 15px;
-    }
-    table.responsive.card {
-        min-width: 100%;
-
-    table.responsive.card th,
-    table.responsive.card td {
-        padding: 10px 12px; /* Ajuste de padding para las celdas de la tabla en móvil */
-    }
-}
-
-/* Modo Oscuro */
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* Paleta de Colores (Modo Oscuro) - Contraparte de la paleta "Navy Seal" */
-        --md-primary: #2B577E;         /* Azul medio para primario en oscuro */
-        --md-on-primary: #FFFFFF;      /* Texto blanco sobre primario */
-        --md-secondary: #1A3E5F;       /* Azul marino oscuro para secundario */
-        --md-on-secondary: #FFFFFF;    /* Texto blanco sobre secundario */
-        --md-tertiary: #5D8AA8;         /* El azul claro se mantiene, o una versión ligeramente más oscura si se prefiere */
-        --md-on-tertiary: #FFFFFF;     /* Texto blanco sobre terciario */
-
-        --md-surface: #121820;         /* Fondo de tarjetas/componentes en oscuro */
-        --md-on-surface: #E0E6EB;      /* Texto claro general en oscuro */
-        --md-background: #0D1013;      /* Fondo general de la página en oscuro, casi negro */
-
-        --md-shadow: rgba(0, 0, 0, 0.6);
-        --md-outline-variant: #6C6C64; /* Borde visible en oscuro */
-    }
-
-    body {
-        background-color: var(--md-background);
-        color: var(--md-on-surface);
-    }
-    
-    main.container {
-        background-color: var(--md-surface);
-        box-shadow: 0 6px 16px var(--md-shadow);
-    }
-
-    .grid > div {
-        background-color: var(--md-surface); /* Hago el fondo de las tarjetas del grid más oscuro */
-        box-shadow: 0 2px 8px var(--md-shadow);
-    }
-    
-    table.responsive.card {
-        background-color: var(--md-surface); /* Hago el fondo de las tablas más oscuro */
-        border: 1px solid var(--md-outline-variant);
-        margin-top: -30px !important;
-    }
-
-    thead th {
-        background-color: var(--md-primary);
-        color: var(--md-on-primary);
-    }
-
-    tbody tr:hover {
-        background-color: var(--md-secondary);
-        color: var(--md-on-secondary);
-    }
-
-    td:last-child {
-        color: var(--md-tertiary); /* Destaco los precios con el azul claro en oscuro */
-    }
-
-    .button.small {
-        background-color: var(--md-primary);
-        color: var(--md-on-primary);
-        box-shadow: 0 2px 4px var(--md-shadow);
-    }
-
-    .button.small:hover {
-        background-color: var(--md-secondary);
-        box-shadow: 0 4px 10px var(--md-shadow);
-    }
-
-    #valor-usdt {
-        background-color: var(--md-primary); /* El recuadro del dólar usa el primario oscuro en modo oscuro */
-        color: var(--md-on-primary);
-        box-shadow: 0 4px 8px var(--md-shadow);
-    }
-
-    #cuotas-seccion {
-        background-color: var(--md-surface);
-        box-shadow: 0 8px 20px var(--md-shadow);
-    }
-
-    #cuotas-seccion h3 {
-        color: var(--md-on-surface);
-    }
-
-    #cuotas-seccion .button.circle {
-        background-color: var(--md-secondary);
-        color: var(--md-on-secondary);
-        box-shadow: 0 2px 4px var(--md-shadow);
-    }
-
-    #cuotas-container .card {
-        background-color: var(--md-tertiary);
-        color: var(--md-on-tertiary);
-        box-shadow: 0 2px 6px var(--md-shadow);
-    }
-
-    #cuotas-container .card .h6 {
-        color: var(--md-primary);
-    }
-}
+  .grid > div {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var
