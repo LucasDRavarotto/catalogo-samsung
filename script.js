@@ -81,7 +81,7 @@ const costosFinanciacion = {
 // Función para calcular y mostrar las cuotas
 function calcularCuotas(productoId) {
     const precioEnPesosTexto = document.getElementById(productoId).textContent;
-    const precioBase = parseFloat(precioEnPesosTexto.replace('$', '').replace(/\./g, '').replace(',', '.'));
+    const precioBase = parseFloat(precioEnPesosTexto.replace(/[^\d,]/g, '').replace(',', '.'));
     
     // Ahora solo necesitamos el backdrop y el contenedor
     const cuotasBackdrop = document.getElementById('cuotas-backdrop');

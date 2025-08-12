@@ -1,259 +1,321 @@
-/*
- * ----------------------------------------------------
- * ESTILOS BASE Y TIPOGRAFÍA
- * ----------------------------------------------------
- */
-
+/* ----------------------------------------------------
+ * PALETA DE COLORES Y VARIABLES
+ * ---------------------------------------------------- */
 :root {
-    --primary: #00878A;     /* Un cian oscuro para botones */
-    --secondary: #00A6A9;   /* Un cian más claro */
-    --surface-container: #E0FFFE; /* Un cian muy claro para superficies */
-    --on-surface: #002222;  /* Texto oscuro para contraste */
+  --md-primary: #1A3E5F;
+  --md-on-primary: #FFFFFF;
+  --md-secondary: #2B577E;
+  --md-on-secondary: #FFFFFF;
+  --md-tertiary: #5D8AA8;
+  --md-on-tertiary: #FFFFFF;
+  --md-surface: #E0E6EB;
+  --md-on-surface: #121820;
+  --md-background: #F0F3F7;
+  --md-accent: #DAA520;
+  --md-muted: #808080;
+  --md-error: #B00020;
+  --md-shadow: rgba(0, 0, 0, 0.2);
+  --md-outline-variant: #90A4AE;
+  --md-transition-time: 0.2s ease-in-out;
 }
- 
+
+/* ----------------------------------------------------
+ * TIPOGRAFÍA Y BASE
+ * ---------------------------------------------------- */
 body {
-    font-family: 'Work Sans', sans-serif;
-    background-color: #F0FBFB;
-    color: var(--on-surface);
+  background-color: var(--md-background);
+  color: var(--md-on-surface);
+  font-family: 'Work Sans', sans-serif;
+  line-height: 1.6;
 }
 
-h2, h3 {
-    font-family: sans-serif;
+h2, h3, h6 {
+  font-family: sans-serif;
+  font-weight: 700;
 }
 
-/*
- * ----------------------------------------------------
- * LAYOUT PRINCIPAL Y CONTENEDORES
- * ----------------------------------------------------
- */
+h2 .material-icons {
+  font-size: 1em;
+  vertical-align: text-bottom;
+  margin-right: 2px;
+  color: var(--md-primary);
+}
 
+/* ----------------------------------------------------
+ * LAYOUT PRINCIPAL
+ * ---------------------------------------------------- */
 main header {
-    padding-top: 30px;
-    padding-bottom: 10px;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 main.container {
-    border-radius: 24px;
-    overflow: hidden;
-    background-color: #ffffff; /* Fondo blanco */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+  background-color: var(--md-surface);
+  box-shadow: 0 6px 16px var(--md-shadow);
+  border-radius: 24px;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  gap: 24px;
 }
 
 .grid > div {
-    border-radius: 8px; /* Un radio un poco menor */
-    background-color: var(--bs-white);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    padding: 15px;
+  border-radius: 16px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: box-shadow var(--md-transition-time);
 }
 
-.grid > div:first-child {
-    margin-bottom: 10px;
+.grid > div:hover {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.2);
 }
 
-/*
- * ----------------------------------------------------
- * SECCIONES Y BADGES DE TÍTULO
- * ----------------------------------------------------
- */
-
+/* ----------------------------------------------------
+ * SECCIONES Y BADGES
+ * ---------------------------------------------------- */
 .section-header {
-    margin-top: 30px;
-    margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .badge.primary {
-    border-radius: 9999px; /* Efecto de "píldora" */
-    padding: 8px 16px;
-    font-size: 1.1em;
+  background-color: var(--md-primary) !important;
+  color: var(--md-on-primary) !important;
+  border-radius: 9999px;
+  padding: 8px 20px;
+  font-weight: 500;
+  font-size: 1.2em;
+  box-shadow: 0 4px 8px var(--md-shadow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background-color var(--md-transition-time);
 }
 
-.section-title {
-    color: #0d47a1;
-    border-bottom: 2px solid #1565c0;
-    font-size: 1.5em;
-    font-weight: bold;
-    padding-bottom: 8px;
-    margin-top: 30px;
+.badge.primary:hover {
+  background-color: var(--md-secondary) !important;
+  box-shadow: 0 8px 18px var(--md-shadow);
 }
 
-/*
- * ----------------------------------------------------
- * TABLAS Y CONTENIDO
- * ----------------------------------------------------
- */
+.badge.primary i.material-icons {
+  font-size: 1.5em;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.badge.primary h6 {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+  display: inline-block;
+}
+
+/* ----------------------------------------------------
+ * TABLAS
+ * ---------------------------------------------------- */
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+}
 
 table.responsive.card {
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--outline-variant);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--md-outline-variant);
+  box-shadow: 0 4px 8px var(--md-shadow);
+  background-color: var(--md-surface);
+  margin-top: 0 !important;
 }
 
 thead th {
-    background-color: var(--primary);
-    color: white;
-    font-weight: 500;
-    padding: 12px 16px;
-    text-align: left;
+  background-color: var(--md-primary);
+  color: var(--md-on-primary);
+  font-weight: 600;
+  padding: 14px 18px;
+  text-align: left;
+  white-space: nowrap;
 }
 
 thead th:first-child {
-    border-top-left-radius: 12px;
+  border-top-left-radius: 12px;
 }
 
 thead th:last-child {
-    border-top-right-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+tbody tr {
+  transition: background-color var(--md-transition-time), color var(--md-transition-time);
 }
 
 tbody tr:hover {
-    background-color: #f0f4f8; /* Un color único y consistente al pasar el mouse */
-    color: #333; /* Aseguramos que el texto sea visible */
+  background-color: var(--md-secondary);
+  color: var(--md-on-secondary);
 }
 
-/* Estilo para los precios en pesos para que se destaquen */
+td {
+  white-space: nowrap;
+  padding: 10px 18px;
+}
+
 td:last-child {
-    color: #a6c8e3;
-    font-weight: 700;
+  color: var(--md-primary);
+  font-weight: 700;
 }
 
 .button.small {
-    padding: 6px 12px;
-    font-size: 0.85em;
+  background-color: var(--md-primary);
+  color: var(--md-on-primary);
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 0.9em;
+  box-shadow: 0 2px 4px var(--md-shadow);
+  transition: background-color var(--md-transition-time), box-shadow var(--md-transition-time), transform var(--md-transition-time);
 }
 
-/*
- * ----------------------------------------------------
- * COTIZACIÓN DÓLAR USDT
- * ----------------------------------------------------
- */
+.button.small:hover {
+  background-color: var(--md-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px var(--md-shadow);
+}
 
+/* ----------------------------------------------------
+ * VALOR USDT
+ * ---------------------------------------------------- */
 #valor-usdt {
-    background-color: #e3f2fd;
-    color: #0d47a1;
-    border-radius: 16px;
-    padding: 12px;
-    font-size: 1.1em;
-    font-weight: bold; /* Corregimos el valor a 'bold' */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--md-tertiary);
+  color: var(--md-on-tertiary);
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 1.2em;
+  font-weight: bold;
+  box-shadow: 0 4px 8px var(--md-shadow);
+  text-align: center;
 }
 
-/*
- * ----------------------------------------------------
- * MODAL DE CUOTAS
- * ----------------------------------------------------
- */
-
+/* ----------------------------------------------------
+ * MODAL CUOTAS
+ * ---------------------------------------------------- */
 .modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: none;
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 #cuotas-seccion {
-    background-color: var(--surface-container); /* Un color neutro que se adapta */
-    padding: 24px;
-    border-radius: 28px; /* Un radio más grande para un estilo más suave */
-    max-width: 90%;
-    width: 500px; /* Ancho fijo para escritorio */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
-    position: relative; /* Para que el botón de cierre se posicione correctamente */
+  background-color: var(--md-surface);
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: 0 8px 20px var(--md-shadow);
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 #cuotas-seccion h3 {
-    margin-top: 20px;
-    text-align: center;
+  font-size: 1.8em;
+  font-weight: 600;
+  color: var(--md-on-surface);
+  text-align: center;
+  margin-bottom: 24px;
 }
 
 #cuotas-seccion .button.circle {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 1001;
-}
-
-.modal-backdrop #cuotas-seccion {
-    display: block;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1001;
+  background-color: var(--md-primary);
+  color: var(--md-on-primary);
+  box-shadow: 0 2px 4px var(--md-shadow);
 }
 
 #cuotas-container {
-    padding: 16px;
-    gap: 16px;
+  padding: 0;
+  gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
 
 #cuotas-container .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--md-tertiary);
+  color: var(--md-on-tertiary);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 8px var(--md-shadow);
+  transition: transform var(--md-transition-time);
 }
 
 #cuotas-container .card .h6 {
-    margin-bottom: 8px;
-    font-size: 1.1em;
-    font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--md-primary);
 }
 
-/*
- * ----------------------------------------------------
- * MEDIA QUERIES Y MODO OSCURO
- * ----------------------------------------------------
- */
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        /* Variables de color para el tema oscuro */
-        --primary: #4DD0E1; /* Cian claro para botones */
-        --secondary: #26C6DA;
-        --surface-container: #1C292A; /* Un gris verdoso oscuro */
-        --on-surface: #E0FFFE; /* Texto cian claro */
-    }
+#cuotas-container .card:hover {
+  transform: scale(1.02);
 }
 
+/* ----------------------------------------------------
+ * MEDIA QUERIES
+ * ---------------------------------------------------- */
 @media (min-width: 768px) {
-    .grid > div {
-        margin-bottom: 0;
-    }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid > div {
+    margin-bottom: 0;
+  }
 }
 
-@media (max-width: 600px) {
-    #cuotas-seccion {
-        width: 90%;
-        max-width: none;
-    }
-}
+@media (max-width: 767px) {
+  main.container {
+    padding: 16px;
+    border-radius: 12px;
+  }
 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #0d1616; /* Fondo muy oscuro */
-        color: var(--on-surface);
-    }
-    main.container {
-        background-color: #121E1E;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    }
+  .grid {
+    grid-template-columns: 1fr;
+  }
 
-    .section-title {
-        color: #a6c8e3;
-        border-bottom: 2px solid #5d7e9e;
-    }
+  .grid > div {
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var
+  }
+   .section-header {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: left; /* Alineación izquierda */
+  }
 
-    #valor-usdt {
-        background-color: #334D4D;
-        color: var(--on-surface);
-    }
-
-    tbody tr:hover {
-        background-color: #1A2727;
-    }
-}
+  .badge.primary {
+    justify-content: flex-start; /* Contenido alineado a la izquierda */
+  }
