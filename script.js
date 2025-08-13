@@ -1,127 +1,163 @@
-// Función asíncrona para obtener la cotización del Dólar Cripto
+// =========================
+// Utilidades
+// =========================
+function getBackendBase() {
+  const { protocol, hostname } = window.location;
+  const isCodespaces = /\.app\.github\.dev$/.test(hostname);
+  if (isCodespaces) {
+    const backendHost = hostname.replace(/-\d+\.app\.github\.dev$/, '-3000.app.github.dev');
+    return `${protocol}//${backendHost}`;
+  }
+  return 'http://localhost:3000';
+}
+
+const BACKEND_BASE = getBackendBase();
+
+// Fetch con timeout y sin cache para evitar respuestas viejas
+async function fetchJSON(url, options = {}, timeoutMs = 10000) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, { cache: 'no-store', ...options, signal: controller.signal });
+    if (!res.ok) throw new Error(`HTTP ${res.status} ${res.statusText}`);
+    return await res.json();
+  } finally {
+    clearTimeout(id);
+  }
+}
+
+// =========================
+// Cotización USDT → ARS
+// =========================
 async function obtenerCotizacionCripto() {
-    try {
-        const respuesta = await fetch("https://dolarapi.com/v1/dolares/cripto");
-        const datos = await respuesta.json();
-        // La API de Dolarapi.com devuelve la cotización de venta en 'venta'
-        return datos.venta; 
-    } catch (error) {
-        console.error("Error al obtener la cotización del Dólar Cripto:", error);
-        return null;
-    }
+  try {
+    // La API de Dólar Cripto se obtiene ahora a través de nuestro propio backend (proxy)
+    const d = await fetchJSON(`${BACKEND_BASE}/api/cotizacion`);
+    const venta = typeof d?.venta === 'number' ? d.venta : Number(d?.venta);
+    if (!venta || Number.isNaN(venta)) throw new Error('Formato inesperado de la API');
+    return venta;
+  } catch (err) {
+    console.error('Error al obtener la cotización del Dólar Cripto:', err);
+    return null;
+  }
 }
 
-// Función para actualizar todos los precios en la tabla
 async function actualizarPrecios() {
-    const cotizacion = await obtenerCotizacionCripto();
-    const elementoValorUSDT = document.getElementById("valor-usdt");
+  const elementoValorUSDT = document.getElementById('valor-usdt');
 
-    // Si no se pudo obtener la cotización, mostramos un error
-    if (!cotizacion) {
-        elementoValorUSDT.textContent = "USDT: Error de conexión";
-        // Recorremos los IDs de los precios para mostrar el error en la tabla también
-        const precios = {
-            s25u: 1250, s25: 850, a56: 490, a55: 440, a36: 355, a16: 200,
-            a54: 330, s23u: 580
-        };
-        for (const id in precios) {
-            const elemento = document.getElementById(id);
-            if (elemento) {
-                elemento.textContent = "Error de conexión";
-            }
-        }
-        return;
+  // Precios en USDT
+  const precios = {
+    s25u: 1250, s25: 850, a56: 490, a55: 440, a36: 355, a16: 200,
+    a54: 330, s23u: 580
+  };
+
+  for (const id of Object.keys(precios)) {
+    const el = document.getElementById(id);
+    if (el && (el.textContent === '' || el.textContent === '—')) el.textContent = '...';
+  }
+
+  const cotizacion = await obtenerCotizacionCripto();
+
+  if (!cotizacion) {
+    elementoValorUSDT.innerHTML = `<div class="alert-error">❌ No se pudo conectar para cotizar el Dólar Cripto.</div>`;
+    for (const id in precios) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = '—';
     }
+    return;
+  }
 
-    // Actualizamos el valor del Dólar Cripto en la página
-    elementoValorUSDT.textContent = `Dólar Cripto: AR$ ${cotizacion.toLocaleString("es-AR", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    })}`;
+  elementoValorUSDT.textContent = `Dólar Cripto: AR$ ${cotizacion.toLocaleString('es-AR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })}`;
 
-    // Objeto con los precios en USDT de tus equipos
-    const precios = {
-        s25u: 1250, s25: 850, a56: 490, a55: 440, a36: 355, a16: 200,
-        a54: 330, s23u: 580
-    };
-
-    // Recorremos el objeto de precios y actualizamos cada elemento
-    for (const [id, usdt] of Object.entries(precios)) {
-        const precioFinal = (usdt * cotizacion).toLocaleString("es-AR", {
-            style: "currency",
-            currency: "ARS",
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
-
-        const elemento = document.getElementById(id);
-        if (elemento) {
-            elemento.textContent = precioFinal;
-        }
-    }
+  for (const [id, usdt] of Object.entries(precios)) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    const ars = usdt * cotizacion;
+    el.textContent = ars.toLocaleString('es-AR', {
+      style: 'currency',
+      currency: 'ARS',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
 }
 
-// Inicializamos la actualización de precios cuando la página carga
-document.addEventListener("DOMContentLoaded", actualizarPrecios);
+document.addEventListener('DOMContentLoaded', actualizarPrecios);
+setInterval(actualizarPrecios, 300000);
 
-// Configuramos una actualización automática cada 5 minutos
-setInterval(actualizarPrecios, 300000); // 300000 milisegundos = 5 minutos
+// =========================
+// Cuotas con backend (Mercado Pago)
+// =========================
+async function calcularCuotas(productoId) {
+  const precioTexto = document.getElementById(productoId)?.textContent ?? '';
+  const precioBase = parseFloat(
+    precioTexto.replace('$', '').replace(/\./g, '').replace(',', '.')
+  );
 
-// Objeto con los costos de financiamiento de Mercado Pago
-// *** IMPORTANTE: DEBES ACTUALIZAR ESTOS VALORES CON LOS DE TU CUENTA ***
+  const cuotasContainer = document.getElementById('cuotas-container');
+  const backdrop = document.getElementById('cuotas-backdrop');
 
-const costosFinanciacion = {
-    '2': 12.0032, // Este es el valor que calculamos (9.92% + 21% de IVA)
-    '3': 15.5485, // Ejemplo: 15.0% de recargo por 3 cuotas
-    '6': 25.4826, // Ejemplo: 25.0% de recargo por 6 cuotas
-    '9': 35.8402, // Ejemplo: 35.0% de recargo por 9 cuotas
-    '12': 43.5479 // Ejemplo: 45.0% de recargo por 12 cuotas
-};
+  if (isNaN(precioBase)) {
+    cuotasContainer.innerHTML = `<p class="padding">Error: precio inválido.</p>`;
+    backdrop.style.display = 'flex';
+    return;
+  }
 
-// Función para calcular y mostrar las cuotas
-function calcularCuotas(productoId) {
-    const precioEnPesosTexto = document.getElementById(productoId).textContent;
-    const precioBase = parseFloat(precioEnPesosTexto.replace('$', '').replace(/\./g, '').replace(',', '.'));
-    
-    // Ahora solo necesitamos el backdrop y el contenedor
-    const cuotasBackdrop = document.getElementById('cuotas-backdrop');
-    const cuotasContainer = document.getElementById('cuotas-container');
+  const payload = {
+    payment_method_id: 'visa',
+    bin: '450995',
+    amount: precioBase
+  };
 
-    // 1. Limpiamos el contenedor
-    cuotasContainer.innerHTML = '';
+  cuotasContainer.innerHTML = `
+    <div class="s12">
+      <div class="card padding align-center">Calculando cuotas...</div>
+    </div>
+  `;
+  backdrop.style.display = 'flex';
 
-    if (isNaN(precioBase)) {
-        cuotasContainer.innerHTML = `<p class="padding">Error: No se pudo obtener el precio del producto.</p>`;
-        cuotasBackdrop.style.display = 'flex';
-        return;
+  try {
+    const data = await fetchJSON(`${BACKEND_BASE}/api/cuotas`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const { cuotas } = data || {};
+    if (!Array.isArray(cuotas) || !cuotas.length) {
+      throw new Error('Sin cuotas devueltas por el backend');
     }
 
-    let htmlCuotas = '';
-    
-    // 2. Generamos el HTML
-    for (const cuotas in costosFinanciacion) {
-        const porcentajeRecargo = costosFinanciacion[cuotas];
-        const recargo = precioBase * (porcentajeRecargo / 100);
-        const precioTotal = precioBase + recargo;
-        const valorCuota = precioTotal / parseInt(cuotas);
-
-        htmlCuotas += `
-            <div class="s12 m6 l4">
-                <div class="card padding">
-                    <p class="h6">${cuotas} cuotas</p>
-                    <p>Total: <b>AR$ ${precioTotal.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</b></p>
-                    <p>Cada cuota: <b>AR$ ${valorCuota.toLocaleString('es-AR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</b></p>
-                </div>
-            </div>
-        `;
+    let html = '';
+    for (const c of cuotas) {
+      html += `
+        <div class="s12 m6 l4">
+          <div class="card padding">
+            <p class="h6">${c.installments} cuotas</p>
+            <p>Total: <b>AR$ ${Number(c.total_amount).toLocaleString('es-AR', { minimumFractionDigits: 2 })}</b></p>
+            <p>Cada cuota: <b>AR$ ${Number(c.installment_amount).toLocaleString('es-AR', { minimumFractionDigits: 2 })}</b></p>
+          </div>
+        </div>
+      `;
     }
-
-    // 3. Insertamos el HTML y mostramos el backdrop
-    cuotasContainer.innerHTML = htmlCuotas;
-    cuotasBackdrop.style.display = 'flex';
+    cuotasContainer.innerHTML = html;
+  } catch (err) {
+    console.error('No se pudieron obtener las cuotas:', err);
+    cuotasContainer.innerHTML = `
+      <div class="s12">
+        <div class="card padding">
+          <p class="h6">No se pudieron obtener las cuotas</p>
+          <p>Verificá que el backend esté corriendo y el puerto 3000 esté público.</p>
+          <p><code>BACKEND_BASE: ${BACKEND_BASE}</code></p>
+        </div>
+      </div>
+    `;
+  }
 }
 
-// *** Esta función debe ir FUERA de la función 'calcularCuotas' ***
 function ocultarCuotas() {
-    document.getElementById('cuotas-backdrop').style.display = 'none';
+  document.getElementById('cuotas-backdrop').style.display = 'none';
 }

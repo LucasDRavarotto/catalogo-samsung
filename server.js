@@ -1,62 +1,66 @@
-// server.js
-
-// Importamos las librerías necesarias
 const express = require('express');
-const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const axios = require('axios');
 const cors = require('cors');
 
-// Creamos la instancia de la aplicación de Express
 const app = express();
+const port = 3000;
 
-// Middleware (para que Express pueda entender JSON y evitar problemas de CORS)
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser.json());
 
-// URL de conexión a tu base de datos de MongoDB Atlas
-// ¡IMPORTANTE!: Reemplaza <tu_url_de_conexion> con la URL que te da MongoDB Atlas
-const MONGODB_URI = 'mongodb+srv://lucasdavid:<asd147258>@basededatos.oizq3h3.mongodb.net/?retryWrites=true&w=majority&appName=basededatos';
+// 👉 ¡Esta es la línea clave que falta!
+app.use(express.static('.'));
 
-// Conexión a MongoDB
-mongoose.connect(MONGODB_URI)
-    .then(() => console.log('Conexión exitosa a MongoDB'))
-    .catch(err => console.error('Error de conexión a MongoDB:', err));
+const ACCESS_TOKEN = "TEST-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 
-// Definimos el puerto en el que correrá el servidor
-const PORT = process.env.PORT || 3000;
+// Endpoint para obtener las cuotas de Mercado Pago
+app.post('/api/cuotas', async (req, res) => {
+  const { payment_method_id, bin, amount } = req.body;
 
-// Iniciamos el servidor
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en el puerto ${PORT}`);
+  if (!payment_method_id || !bin || !amount) {
+    return res.status(400).json({ error: 'Faltan parámetros: payment_method_id, bin, y amount son requeridos.' });
+  }
+
+  try {
+    const url = 'https://api.mercadopago.com/v1/payment_methods/installments';
+    const response = await axios.get(url, {
+      params: {
+        public_key: ACCESS_TOKEN,
+        payment_method_id,
+        bin,
+        amount
+      }
+    });
+
+    const data = response.data;
+    if (data && data.payer_costs && data.payer_costs.length > 0) {
+      const cuotas = data.payer_costs.map(costo => ({
+        installments: costo.installments,
+        total_amount: costo.total_amount,
+        installment_amount: costo.installment_amount
+      }));
+      return res.json({ cuotas });
+    }
+    res.status(404).json({ error: 'No se encontraron cuotas.' });
+  } catch (error) {
+    console.error('Error al obtener las cuotas:', error.message);
+    res.status(500).json({ error: 'Error interno del servidor al procesar la solicitud.' });
+  }
 });
 
-// A continuación, crearemos el modelo de datos y las rutas (endpoints) de la API
-
-// Definimos el esquema del modelo de Producto
-const productoSchema = new mongoose.Schema({
-    modelo: {
-        type: String,
-        required: true
-    },
-    precio_usdt: {
-        type: Number,
-        required: true
-    },
-    estado: {
-        type: String,
-        required: true,
-        enum: ['nuevo', 'usado'] // Para asegurar que solo se usen estos dos valores
-    }
+// Endpoint para obtener la cotización del dólar cripto (proxy)
+app.get('/api/cotizacion', async (req, res) => {
+  try {
+    const response = await axios.get('https://dolarapi.com/v1/dolares/cripto');
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error al obtener la cotización del Dólar Cripto:', error.message);
+    res.status(500).json({ error: 'No se pudo obtener la cotización.' });
+  }
 });
 
-// Creamos el modelo a partir del esquema
-const Producto = mongoose.model('Producto', productoSchema);
-
-// Ruta para obtener todos los productos
-app.get('/api/productos', async (req, res) => {
-    try {
-        const productos = await Producto.find();
-        res.status(200).json(productos);
-    } catch (err) {
-        res.status(500).json({ message: 'Error al obtener los productos', error: err });
-    }
+app.listen(port, () => {
+  console.log(`✅ Backend corriendo en http://localhost:${port}`);
 });

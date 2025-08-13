@@ -1,0 +1,50 @@
+[
+  {
+    "id": "s25u",
+    "modelo": "Galaxy S25 Ultra",
+    "usdt": 1250,
+    "estado": "nuevo"
+  },
+  {
+    "id": "s25",
+    "modelo": "Galaxy S25",
+    "usdt": 850,
+    "estado": "nuevo"
+  },
+  {
+    "id": "a56",
+    "modelo": "Galaxy A56",
+    "usdt": 490,
+    "estado": "nuevo"
+  },
+  {
+    "id": "a55",
+    "modelo": "Galaxy A55",
+    "usdt": 440,
+    "estado": "nuevo"
+  },
+  {
+    "id": "a36",
+    "modelo": "Galaxy A36",
+    "usdt": 355,
+    "estado": "nuevo"
+  },
+  {
+    "id": "a16",
+    "modelo": "Galaxy A16",
+    "usdt": 200,
+    "estado": "nuevo"
+  },
+  {
+    "id": "a54",
+    "modelo": "Galaxy A54",
+    "usdt": 330,
+    "estado": "usado"
+  },
+  {
+    "id": "s23u",
+    "modelo": "Galaxy S23 Ultra",
+    "usdt": 580,
+    "estado": "usado"
+  }
+]
