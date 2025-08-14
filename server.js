@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 // 👉 ¡Esta es la línea clave que falta!
 app.use(express.static('.'));
 
-const ACCESS_TOKEN = "TEST-xxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+const ACCESS_TOKEN = "TEST-aa51e05b-71d4-4e03-a2b8-19088568b9c4";
 
 // Endpoint para obtener las cuotas de Mercado Pago
 app.post('/api/cuotas', async (req, res) => {
@@ -35,8 +35,11 @@ app.post('/api/cuotas', async (req, res) => {
     });
 
     const data = response.data;
-    if (data && data.payer_costs && data.payer_costs.length > 0) {
-      const cuotas = data.payer_costs.map(costo => ({
+    // La respuesta de la API es un array, accedemos al primer elemento
+    const payerCosts = data[0]?.payer_costs;
+
+    if (payerCosts && payerCosts.length > 0) {
+      const cuotas = payerCosts.map(costo => ({
         installments: costo.installments,
         total_amount: costo.total_amount,
         installment_amount: costo.installment_amount
