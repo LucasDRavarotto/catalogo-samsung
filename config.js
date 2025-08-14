@@ -1,13 +1,8 @@
 // config.js
-// Lógica para determinar la URL base del backend (local o en la nube)
-export function getBackendBase() {
-  const { protocol, hostname } = window.location;
-  const isCodespaces = /\.app\.github\.dev$/.test(hostname);
-  if (isCodespaces) {
-    const backendHost = hostname.replace(/-\d+\.app\.github\.dev$/, '-3000.app.github.dev');
-    return `${protocol}//${backendHost}`;
-  }
-  return 'http://localhost:3000';
-}
+// URL de tu servicio de backend desplegado en Render
+const RENDER_BACKEND_URL = 'https://catalogo-samsung.onrender.com';
 
-export const BACKEND_BASE = getBackendBase();
+export function getBackendBase() {
+  // En producción, usamos la URL de Render
+  return RENDER_BACKEND_URL;
+}
