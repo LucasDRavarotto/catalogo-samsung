@@ -150,12 +150,26 @@ td:last-child {
     justify-content: center;
 }
 
+#cuotas-backdrop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
 #cuotas-seccion {
-    display: block !important;
-    background-color: var(--surface-container);
-    padding: 24px;
-    border-radius: 12px;
-    max-width: 90%;
+  background-color: var(--surface-container);
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 90%; /* Limita el ancho del modal */
+  max-height: 90vh; /* Limita la altura del modal */
+  overflow-y: auto; /* Agrega scroll si el contenido es demasiado largo */
 }
 
 #cuotas-seccion h3 {
@@ -164,10 +178,9 @@ td:last-child {
 }
 
 #cuotas-seccion .button.circle {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 1001;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .modal-backdrop #cuotas-seccion {

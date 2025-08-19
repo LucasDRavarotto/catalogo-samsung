@@ -30,19 +30,21 @@
                         <h6>Nuevos</h6>
                     </div>
                 </div>
-                <div class="table-container">
-                    <table class="responsive card">
-                        <thead>
-                            <tr>
-                                <th>Modelo</th>
-                                <th>Precio (USDT)</th>
-                                <th>Precio en ARS</th>
-                                <th>Cuotas</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla-nuevos-body">
+                <div class="scroll">
+                    <div class="table-container">
+                        <table class="responsive card">
+                            <thead>
+                                <tr>
+                                    <th>Modelo</th>
+                                    <th>Precio (USDT)</th>
+                                    <th>Precio en ARS</th>
+                                    <th>Cuotas</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-nuevos-body">
                             </tbody>
-                    </table>
+                        </table>
+                    </div>
                 </div>
             </div>
 
@@ -53,32 +55,34 @@
                         <h6>Usados</h6>
                     </div>
                 </div>
-                <div class="table-container">
-                    <table class="responsive card">
-                        <thead>
-                            <tr>
-                                <th>Modelo</th>
-                                <th>Precio (USDT)</th>
-                                <th>Precio en ARS</th>
-                                <th>Cuotas</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tabla-usados-body">
+                <div class="scroll">
+                    <div class="table-container">
+                        <table class="responsive card">
+                            <thead>
+                                <tr>
+                                    <th>Modelo</th>
+                                    <th>Precio (USDT)</th>
+                                    <th>Precio en ARS</th>
+                                    <th>Cuotas</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-usados-body">
                             </tbody>
-                    </table>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
     
     <div id="cuotas-backdrop" class="modal-backdrop" onclick="ocultarCuotas()">
-        <div id="cuotas-seccion" class="container" onclick="event.stopPropagation()">
+        <div id="cuotas-seccion" class="container">
             <button class="button circle transparent small right" onclick="ocultarCuotas()">
                 <i>close</i>
             </button>
             <h3>Detalle de Cuotas</h3>
             <div id="cuotas-container" class="grid responsive">
-                </div>
+            </div>
         </div>
     </div>
 
